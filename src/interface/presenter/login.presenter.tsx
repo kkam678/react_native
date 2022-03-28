@@ -1,5 +1,5 @@
 import React from "react";
-import {SafeAreaView, StatusBar} from "react-native";
+import {SafeAreaView, StatusBar, StyleSheet} from "react-native";
 import {ILoginViewModel} from "../../domain/use-case/ilogin.view-model.";
 import {Container} from "typedi";
 import {BasePresenter} from "./base.presenter";
@@ -43,27 +43,52 @@ export class LoginPresenter extends BasePresenter<any, IState> {
         })
     }
 
-    handleClickSubmit = () => {
+    handleLogin = () => {
         this.viewModel.setAccount(this.state.account)
         this.viewModel.setPassword(this.state.password)
         this.viewModel.verifyAuthToken()
     }
 
+    handleGoogleLogin = () => {
+
+    }
+
+    handleNaverLogin = () => {
+
+    }
+
+    handleKakaoLogin = () => {
+
+    }
+
     render() {
         return (
-            <SafeAreaView>
+            <SafeAreaView style={styles.container}>
                 <StatusBar barStyle={'light-content'}/>
                 <SubHeader
-                    title={this.lang.loginPageTitle}
+                    titleTop={this.lang.loginSubTitleTop}
+                    titleBottom={this.lang.loginSubTitleBottom}
                 />
                 <LoginForm accountPlaceHolder={this.lang.inputAccount}
                            accountOnChangeText={this.handleChangeAccount}
                            passwordPlaceHolder={this.lang.inputPassword}
                            passwordOnChangeText={this.handleChangePassword}
                            buttonLabel={this.lang.doLogin}
-                           buttonOnPress={this.handleClickSubmit}
+                           handleLogin={this.handleLogin}
+                           handleGoogleLogin={this.handleGoogleLogin}
+                           handleNaverLogin={this.handleNaverLogin}
+                           handleKakaoLogin={this.handleKakaoLogin}
                 />
             </SafeAreaView>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        paddingTop:40,
+        paddingHorizontal: 24,
+        backgroundColor: '#fff'
+    }
+})
