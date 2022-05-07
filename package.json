@@ -13,7 +13,7 @@
     "@babel/plugin-proposal-class-properties": "^7.16.7",
     "@babel/plugin-proposal-decorators": "^7.17.8",
     "@fortawesome/fontawesome-svg-core": "^6.1.0",
-    "@fortawesome/free-solid-svg-icons": "^6.1.0",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.2",
