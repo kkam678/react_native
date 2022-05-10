@@ -11,10 +11,8 @@ import {NavigationContainer} from "@react-navigation/native";
 import {LoginNavigator} from "./src/interface/navigator/login.navigator";
 import BaseInjection from "./src/config/base.injection";
 import {Provider} from "mobx-react";
-import LoginStore from "./src/interface/store/login.store";
 import RootStore from "./src/interface/store/root.store";
-import {Button, SafeAreaView, ScrollView, StatusBar, Text, TextInput} from "react-native";
-import SubHeader from "./src/framework/ui/header/sub-header.ui";
+import { MainNavigator } from './src/interface/navigator/main.navigator';
 
 
 interface IProps {
@@ -39,12 +37,15 @@ class App extends Component<IProps, IState> {
 
     }
     render() {
-        const rootStore = new RootStore();
+        const rootStore = new RootStore();        
         return (
             <Provider {...rootStore}>
-                <NavigationContainer>
-                    <LoginNavigator/>
+                <NavigationContainer>                           
+                    <MainNavigator/>
                 </NavigationContainer>
+                {/* <NavigationContainer>                           
+                    <LoginNavigator/>
+                </NavigationContainer> */}
             </Provider>
         )
     }

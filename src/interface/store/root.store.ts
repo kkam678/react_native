@@ -1,12 +1,11 @@
 import {Container} from "typedi";
 import {ILoginViewModel} from "../../domain/use-case/ilogin.view-model.";
 import {LoginViewModel} from "../../application/view-model/login.view-model";
-import LoginStore from "./login.store";
 
-export default class RootStore {
-    login: LoginStore;
+export default class RootStore {    
+    loginViewModel: LoginViewModel;
 
-    constructor() {
-        this.login = Container.get('LoginStore');
+    constructor() {        
+        this.loginViewModel = Container.get('ILoginViewModel');
     }
 }

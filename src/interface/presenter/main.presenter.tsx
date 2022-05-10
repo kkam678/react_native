@@ -1,10 +1,8 @@
 import React from 'react';
 import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {ILoginViewModel} from '../../domain/use-case/ilogin.view-model.';
-import {Container} from 'typedi';
 import {BasePresenter} from './base.presenter';
 import LoginForm from '../../framework/ui/container/login/login-form.ui';
-import SubHeader from '../../framework/ui/header/sub-header.ui';
 import {inject} from 'mobx-react';
 import LoginAccount from '../../framework/ui/input/login/login-account.ui';
 import LoginPassword from '../../framework/ui/input/login/login-password.ui';
@@ -19,7 +17,7 @@ interface IState {
 }
 
 @inject('loginViewModel')
-export class LoginPresenter extends BasePresenter<any, IState> {
+export class MainPresenter extends BasePresenter<any, IState> {
   private readonly viewModel: ILoginViewModel;
 
   constructor(props: any) {
@@ -61,7 +59,6 @@ export class LoginPresenter extends BasePresenter<any, IState> {
           titleTop={this.lang.loginSubTitleTop}
           titleBottom={this.lang.loginSubTitleBottom}
         />
-
         <LoginForm>
           <LoginAccount
             placeholder={this.lang.inputAccount}
