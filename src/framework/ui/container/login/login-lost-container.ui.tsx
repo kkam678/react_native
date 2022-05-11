@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import {
-  View,
-} from 'react-native';
-import { container } from '../../../style/container.style';
+import {View} from 'react-native';
+import {container} from '../../../style/container.style';
 
 export default class LoginLostContainer extends Component<any, any> {
   constructor(props: any) {
@@ -13,8 +11,6 @@ export default class LoginLostContainer extends Component<any, any> {
 
   render() {
     const {children} = this.props;
-    return <View style={container.lostButtonWrap}>
-      {children}
-    </View>;
+    return <View style={container.lostButtonWrap}>{children}</View>;
   }
 }

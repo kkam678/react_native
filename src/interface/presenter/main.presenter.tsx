@@ -55,24 +55,7 @@ export class MainPresenter extends BasePresenter<any, IState> {
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle={'light-content'} />
-        <LoginTopBlock
-          titleTop={this.lang.loginSubTitleTop}
-          titleBottom={this.lang.loginSubTitleBottom}
-        />
-        <LoginForm>
-          <LoginAccount
-            placeholder={this.lang.inputAccount}
-            onChangeText={this.handleChangeAccount}
-          />
-          <LoginPassword
-            placeholder={this.lang.inputPassword}
-            onChangeText={this.handleChangePassword}
-          />
-          <LoginButton label={this.lang.doLogin} onPress={this.handleLogin} />
-          <LoginLostContainer>
-            <LoginLostButton />
-          </LoginLostContainer>
-        </LoginForm>
+        
       </SafeAreaView>
     );
   }
