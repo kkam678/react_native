@@ -12,6 +12,8 @@ import TabBarGallery from '../../../assets/images/tab-bar-gallery.svg';
 import TabBarNft from '../../../assets/images/tab-bar-nft.svg';
 import TabBarShop from '../../../assets/images/tab-bar-shop.svg';
 import styled from 'styled-components/native';
+import TabNavigationHeader from '../../framework/ui/header/tab-navigation-header.ui';
+import TabNavigationAppendMenu from '../../framework/ui/header/tab-navigation-append-menu.ui';
 export class MainNavigator extends Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -71,12 +73,12 @@ export class MainNavigator extends Component<any, any> {
           component={MainPresenter}
           options={{
             headerTitle: props => (
-              <View>
+              <TabNavigationHeader {...props}>
                 <Image
                   style={{width: 96, height: 21}}
                   source={require('../../../assets/images/logo.png')}
                 />
-              </View>
+              </TabNavigationHeader>
             ),
             //   headerStyle: {
             //     backgroundColor: '#f4511e',
@@ -87,10 +89,50 @@ export class MainNavigator extends Component<any, any> {
             // },
           }}
         />
-        <Tab.Screen name="VOTE" component={MainPresenter} />
-        <Tab.Screen name="GALLERY" component={MainPresenter} />
-        <Tab.Screen name="NFT" component={MainPresenter} />
-        <Tab.Screen name="SHOP" component={MainPresenter} />
+        <Tab.Screen
+          name="VOTE"
+          component={MainPresenter}
+          options={{
+            headerTitle: props => (
+              <TabNavigationHeader {...props}>
+                <Text>VOTE</Text>
+              </TabNavigationHeader>
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="GALLERY"
+          component={MainPresenter}
+          options={{
+            headerTitle: props => (
+              <TabNavigationHeader {...props}>
+                <Text>GALLERY</Text>
+              </TabNavigationHeader>
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="NFT"
+          component={MainPresenter}
+          options={{
+            headerTitle: props => (
+              <TabNavigationHeader {...props}>
+                <Text>NFT</Text>
+              </TabNavigationHeader>
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="SHOP"
+          component={MainPresenter}
+          options={{
+            headerTitle: props => (
+              <TabNavigationHeader {...props}>
+                <Text>SHOP</Text>
+              </TabNavigationHeader>
+            ),
+          }}
+        />
       </Tab.Navigator>
     );
   }
