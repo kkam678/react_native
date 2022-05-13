@@ -13,6 +13,10 @@ import BaseInjection from "./src/config/base.injection";
 import {Provider} from "mobx-react";
 import RootStore from "./src/interface/store/root.store";
 import { MainNavigator } from './src/interface/navigator/main.navigator';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faBell, fas } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
 
 
 interface IProps {
@@ -34,7 +38,7 @@ class App extends Component<IProps, IState> {
 
 
     componentDidMount() {
-
+        library.add(fas,far,fab,faBell);
     }
     render() {
         const rootStore = new RootStore();        

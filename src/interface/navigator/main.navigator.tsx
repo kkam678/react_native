@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {LoginPresenter} from '../presenter/login.presenter';
-import {Image, ImageComponent, Text, View} from 'react-native';
+import {Image, ImageComponent, StyleSheet, Text, View} from 'react-native';
 import {MainPresenter} from '../presenter/main.presenter';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
@@ -14,6 +14,7 @@ import TabBarShop from '../../../assets/images/tab-bar-shop.svg';
 import styled from 'styled-components/native';
 import TabNavigationHeader from '../../framework/ui/header/tab-navigation-header.ui';
 import TabNavigationAppendMenu from '../../framework/ui/header/tab-navigation-append-menu.ui';
+import { Color } from '../../framework/style/color.config';
 export class MainNavigator extends Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -80,6 +81,7 @@ export class MainNavigator extends Component<any, any> {
                 />
               </TabNavigationHeader>
             ),
+            headerRight: props => <TabNavigationAppendMenu />,
             //   headerStyle: {
             //     backgroundColor: '#f4511e',
             //   },
@@ -95,9 +97,10 @@ export class MainNavigator extends Component<any, any> {
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
-                <Text>VOTE</Text>
+                <Text style={styles.title}>VOTE</Text>
               </TabNavigationHeader>
             ),
+            headerRight: props => <TabNavigationAppendMenu />,
           }}
         />
         <Tab.Screen
@@ -106,9 +109,10 @@ export class MainNavigator extends Component<any, any> {
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
-                <Text>GALLERY</Text>
+                <Text style={styles.title}>GALLERY</Text>
               </TabNavigationHeader>
             ),
+            headerRight: props => <TabNavigationAppendMenu />,
           }}
         />
         <Tab.Screen
@@ -117,9 +121,10 @@ export class MainNavigator extends Component<any, any> {
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
-                <Text>NFT</Text>
+                <Text style={styles.title}>NFT</Text>
               </TabNavigationHeader>
             ),
+            headerRight: props => <TabNavigationAppendMenu />,
           }}
         />
         <Tab.Screen
@@ -128,12 +133,26 @@ export class MainNavigator extends Component<any, any> {
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
-                <Text>SHOP</Text>
+                <Text style={styles.title}>SHOP</Text>
               </TabNavigationHeader>
             ),
+            headerRight: props => <TabNavigationAppendMenu />,
           }}
         />
       </Tab.Navigator>
     );
   }
+
+  // 폰트 불러오기
+  async loadFonts() {
+    this.setState({fontsLoaded: true});
+  }
 }
+
+const styles = StyleSheet.create({
+  title: {
+    color: Color.black,
+    fontSize:16,
+    fontFamily: 'Jalnan',
+  },
+});
