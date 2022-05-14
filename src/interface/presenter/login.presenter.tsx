@@ -58,20 +58,20 @@ export class LoginPresenter extends BasePresenter<any, IState> {
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle={'light-content'} />
         <LoginTopBlock
-          titleTop={this.lang.loginSubTitleTop}
-          titleBottom={this.lang.loginSubTitleBottom}
+          titleTop={this.lang.login.loginSubTitleTop}
+          titleBottom={this.lang.login.loginSubTitleBottom}
         />
 
         <LoginForm>
           <LoginAccount
-            placeholder={this.lang.inputAccount}
+            placeholder={this.lang.login.inputAccount}
             onChangeText={this.handleChangeAccount}
           />
           <LoginPassword
-            placeholder={this.lang.inputPassword}
+            placeholder={this.lang.login.inputPassword}
             onChangeText={this.handleChangePassword}
           />
-          <LoginButton label={this.lang.doLogin} onPress={this.handleLogin} />
+          <LoginButton label={this.lang.login.doLogin} onPress={this.handleLogin} />
           <LoginLostContainer>
             <LoginLostButton />
           </LoginLostContainer>

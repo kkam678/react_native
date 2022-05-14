@@ -15,6 +15,8 @@ import styled from 'styled-components/native';
 import TabNavigationHeader from '../../framework/ui/header/tab-navigation-header.ui';
 import TabNavigationAppendMenu from '../../framework/ui/header/tab-navigation-append-menu.ui';
 import { Color } from '../../framework/style/color.config';
+import { FontFamily } from '../../framework/style/font-family.config';
+import { FontSize } from '../../framework/style/font-size.config';
 export class MainNavigator extends Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -152,7 +154,7 @@ export class MainNavigator extends Component<any, any> {
 const styles = StyleSheet.create({
   title: {
     color: Color.black,
-    fontSize:16,
-    fontFamily: 'Jalnan',
+    fontSize: FontSize.sectionTitle,
+    fontFamily: FontFamily.title,
   },
 });

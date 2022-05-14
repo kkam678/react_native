@@ -1,15 +1,18 @@
 import React from 'react';
-import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import {
+  Image,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {ILoginViewModel} from '../../domain/use-case/ilogin.view-model.';
 import {BasePresenter} from './base.presenter';
-import LoginForm from '../../framework/ui/container/login/login-form.ui';
 import {inject} from 'mobx-react';
-import LoginAccount from '../../framework/ui/input/login/login-account.ui';
-import LoginPassword from '../../framework/ui/input/login/login-password.ui';
-import LoginButton from '../../framework/ui/button/login/login-button.ui';
-import LoginLostContainer from '../../framework/ui/container/login/login-lost-container.ui';
-import LoginLostButton from '../../framework/ui/button/login/login-lost-button.ui';
-import LoginTopBlock from '../../framework/ui/block/login/login-top-block.ui';
+import MainSectionContainer from '../../framework/ui/container/main/main-section-container.ui';
+import MainSectionTitle from '../../framework/ui/title/main/main-section-title.ui';
+import MainSwiper from '../../framework/ui/swiper/main/main-swiper.ui';
 
 interface IState {
   account: string;
@@ -55,7 +58,25 @@ export class MainPresenter extends BasePresenter<any, IState> {
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle={'light-content'} />
-        
+        <MainSectionContainer>
+          <MainSectionTitle title={this.lang.main.followList} />
+          {/* <MainSwiper>
+            <View>
+              <Image
+                style={{width: 96, height: 21}}
+                source={require('../../../assets/images/logo.png')}
+              />
+              <Text>123123</Text>
+            </View>
+            <View>
+              <Image
+                style={{width: 96, height: 21}}
+                source={require('../../../assets/images/logo.png')}
+              />
+              <Text>123123</Text>
+            </View>
+          </MainSwiper> */}
+        </MainSectionContainer>
       </SafeAreaView>
     );
   }
@@ -65,7 +86,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 40,
-    paddingHorizontal: 24,
+    paddingHorizontal: 16,
     backgroundColor: '#fff',
   },
 });
