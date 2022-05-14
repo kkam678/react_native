@@ -15,7 +15,6 @@ export class LoginNavigator extends Component<any, any> {
 
     render() {
         const Stack = createNativeStackNavigator();
-        console.log(LoginPresenter);
         return (
 
              <Stack.Navigator initialRouteName="Login">
