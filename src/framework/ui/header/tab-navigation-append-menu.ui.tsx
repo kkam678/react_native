@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   button: {
-    paddingLeft: 16,
+    paddingLeft: 32,
   },
   buttonLast: {
     paddingRight: 16,
