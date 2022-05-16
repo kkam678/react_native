@@ -10,6 +10,11 @@ export default() => {
         },
         main: {
             followList: 'MY STAR LIST',
+            starList: 'Star List',
+            playVote: 'PLAY VOTE!',
+            starRanking: 'Star Ranking',
+            suppotersRanking: 'Suppotors Ranking',
+            kwaveVideo: 'KWAVE Video',
         }
     }
 }

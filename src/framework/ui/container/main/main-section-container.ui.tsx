@@ -1,16 +1,28 @@
 import React, {Component} from 'react';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {container} from '../../../style/container.style';
 
-export default class MainSectionContainer extends Component<any, any> {
-  constructor(props: any) {
-    super(props);
+interface iProps{
+  isFirst: boolean,
+}
+export default class MainSectionContainer extends Component<iProps, any> {
+  constructor(props: iProps) {
+    super(props);    
   }
 
   componentDidMount() {}
 
   render() {
-    const {children} = this.props;
-    return <View>{children}</View>;
+    const {children, isFirst = false} = this.props;
+    return <View style={[styles.container, isFirst == false ? styles.fromSecond : null]}>{children}</View>;
   }
 }
+
+const styles = StyleSheet.create({
+  container:{
+    paddingLeft: 16,
+  },
+  fromSecond:{
+    marginTop:32,    
+  }
+})

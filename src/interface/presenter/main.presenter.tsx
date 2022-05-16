@@ -17,6 +17,7 @@ import MainSwiper from '../../framework/ui/scroll/main/main-horizontal-scroll.ui
 import {ScrollView} from 'react-native-gesture-handler';
 import MainHorizontalScroll from '../../framework/ui/scroll/main/main-horizontal-scroll.ui';
 import CircleImage from '../../framework/ui/image/circle-image.ui';
+import MainFollowContainer from '../../framework/ui/container/main/main-follow-container.ui';
 
 interface IState {
   account: string;
@@ -59,77 +60,121 @@ export class MainPresenter extends BasePresenter<any, IState> {
   handleKakaoLogin = () => {};
 
   render() {
+    const mockData = [
+      {image: require('../../../assets/images/image2.jpeg'), name: '청하'},
+      {image: require('../../../assets/images/image3.jpeg'), name: '한채영'},
+      {image: require('../../../assets/images/image4.jpeg'), name: '경리'},
+      {image: require('../../../assets/images/image2.jpeg'), name: '청하'},
+      {image: require('../../../assets/images/image3.jpeg'), name: '한채영'},
+      {image: require('../../../assets/images/image4.jpeg'), name: '경리'},
+    ];
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle={'light-content'} />
-        <MainSectionContainer>
-          <MainSectionTitle title={this.lang.main.followList} />
-        </MainSectionContainer>
-        <MainHorizontalScroll>
-          <CircleImage width={64} height={64} paddingLeft={16}>
-            <Image
-              style={{width: 96, height: 21}}
-              source={require('../../../assets/images/logo.png')}
-            />            
-          </CircleImage>
-          <Text>123</Text>
-          <CircleImage width={64} height={64}>
-            <Image
-              style={{width: 96, height: 21}}
-              source={require('../../../assets/images/logo.png')}
-            />            
-          </CircleImage>
-          <Text>123123</Text>
-          <CircleImage width={64} height={64}>
-            <Image
-              style={{width: 96, height: 21}}
-              source={require('../../../assets/images/logo.png')}
-            />            
-          </CircleImage>
-          <Text>123123</Text>
-          <CircleImage width={64} height={64}>
-            <Image
-              style={{width: 96, height: 21}}
-              source={require('../../../assets/images/logo.png')}
-            />            
-          </CircleImage>
-          <Text>123123</Text>
-          <CircleImage width={64} height={64}>
-            <Image
-              style={{width: 96, height: 21}}
-              source={require('../../../assets/images/logo.png')}
-            />            
-          </CircleImage>
-          <Text>123123</Text>
-          <CircleImage width={64} height={64}>
-            <Image
-              style={{width: 96, height: 21}}
-              source={require('../../../assets/images/logo.png')}
-            />            
-          </CircleImage>
-          <Text>123123</Text>
-          <CircleImage width={64} height={64}>
-            <Image
-              style={{width: 96, height: 21}}
-              source={require('../../../assets/images/logo.png')}
-            />            
-          </CircleImage>
-          <Text>123123</Text>
-          <CircleImage width={64} height={64}>
-            <Image
-              style={{width: 96, height: 21}}
-              source={require('../../../assets/images/logo.png')}
-            />            
-          </CircleImage>
-          <Text>123123</Text>
-          <CircleImage width={64} height={64} isLast={true}>
-            <Image
-              style={{width: 96, height: 21}}
-              source={require('../../../assets/images/logo.png')}
-            />            
-          </CircleImage>
-          <Text>123123</Text>
-        </MainHorizontalScroll>
+          <ScrollView
+            style={styles.wrapper}
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}>
+            <MainSectionContainer isFirst={true}>
+              <MainSectionTitle title={this.lang.main.followList} />
+              <MainHorizontalScroll>
+                {mockData.map((v, k) => {
+                  const isLast = mockData.length == k + 1;
+                  return (
+                    <MainFollowContainer index={k}>
+                      <CircleImage
+                        isLast={isLast}
+                        source={v.image}
+                        width={64}
+                        height={64}
+                      />
+                      <Text style={{textAlign: 'center'}}>{v.name}</Text>
+                    </MainFollowContainer>
+                  );
+                })}
+              </MainHorizontalScroll>
+            </MainSectionContainer>
+
+            <MainSectionContainer isFirst={false}>
+              <MainSectionTitle title={this.lang.main.starList} />
+              <MainHorizontalScroll>
+                {mockData.map((v, k) => {
+                  const isLast = mockData.length == k + 1;
+                  return (
+                    <MainFollowContainer index={k}>
+                      <CircleImage
+                        isLast={isLast}
+                        source={v.image}
+                        width={64}
+                        height={64}
+                      />
+                      <Text style={{textAlign: 'center'}}>{v.name}</Text>
+                    </MainFollowContainer>
+                  );
+                })}
+              </MainHorizontalScroll>
+            </MainSectionContainer>
+
+            <MainSectionContainer isFirst={false}>
+              <MainSectionTitle title={this.lang.main.playVote} />
+              <MainHorizontalScroll>
+                {mockData.map((v, k) => {
+                  const isLast = mockData.length == k + 1;
+                  return (
+                    <MainFollowContainer index={k}>
+                      <CircleImage
+                        isLast={isLast}
+                        source={v.image}
+                        width={64}
+                        height={64}
+                      />
+                      {/* <Text style={{textAlign: 'center'}}>{v.name}</Text> */}
+                    </MainFollowContainer>
+                  );
+                })}
+              </MainHorizontalScroll>
+            </MainSectionContainer>
+
+            <MainSectionContainer isFirst={false}>
+              <MainSectionTitle title={this.lang.main.starRanking} />
+              <MainHorizontalScroll>
+                {mockData.map((v, k) => {
+                  const isLast = mockData.length == k + 1;
+                  return (
+                    <MainFollowContainer index={k}>
+                      <CircleImage
+                        isLast={isLast}
+                        source={v.image}
+                        width={64}
+                        height={64}
+                      />
+                      <Text style={{textAlign: 'center'}}>{v.name}</Text>
+                    </MainFollowContainer>
+                  );
+                })}
+              </MainHorizontalScroll>
+            </MainSectionContainer>
+
+            <MainSectionContainer isFirst={false}>
+              <MainSectionTitle title={this.lang.main.suppotersRanking} />
+              <MainHorizontalScroll>
+                {mockData.map((v, k) => {
+                  const isLast = mockData.length == k + 1;
+                  return (
+                    <MainFollowContainer index={k}>
+                      <CircleImage
+                        isLast={isLast}
+                        source={v.image}
+                        width={64}
+                        height={64}
+                      />
+                      <Text style={{textAlign: 'center'}}>{v.name}</Text>
+                    </MainFollowContainer>
+                  );
+                })}
+              </MainHorizontalScroll>
+            </MainSectionContainer>
+          </ScrollView>
       </SafeAreaView>
     );
   }
@@ -138,11 +183,12 @@ export class MainPresenter extends BasePresenter<any, IState> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 40,
-    paddingHorizontal: 16,
+
+  },
+  wrapper: {
+    paddingTop: 16,    
     backgroundColor: '#fff',
   },
-  wrapper: {},
   slide1: {
     flex: 1,
     justifyContent: 'center',

@@ -1,6 +1,6 @@
 import {width} from '@fortawesome/free-solid-svg-icons/faHome';
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
 interface IProps {
@@ -17,19 +17,20 @@ export default class CircleImage extends Component<any, any> {
   componentDidMount() {}
 
   render() {
-    const {children, isLast, width, height} = this.props;
+    const {source, width, height, isLast} = this.props;
     return (
-      <View
-        style={[
-          styles.container,
-          isLast ? styles.last : null,
-          {
-            width: width,
-            height: height,
-            borderRadius: width / 2,
-          },
-        ]}>
-        {children}
+      <View style={[styles.container]}>
+        <Image
+          style={
+            (styles.image,           
+            {
+              width: width,
+              height: height,
+              borderRadius: width / 2,
+            })
+          }
+          source={source}
+        />
       </View>
     );
   }
@@ -37,10 +38,13 @@ export default class CircleImage extends Component<any, any> {
 
 const styles = StyleSheet.create({
   container: {
-    paddingLeft: 16,
+    flex: 1,
     overflow: 'hidden',
   },
   last: {
-    marginRight: 16,
+    paddingRight: 16,
+  },
+  image: {
+    resizeMode: 'cover',
   },
 });
