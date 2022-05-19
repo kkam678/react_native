@@ -18,6 +18,8 @@ import {ScrollView} from 'react-native-gesture-handler';
 import MainHorizontalScroll from '../../framework/ui/scroll/main/main-horizontal-scroll.ui';
 import CircleImage from '../../framework/ui/image/circle-image.ui';
 import MainFollowContainer from '../../framework/ui/container/main/main-follow-container.ui';
+import SquareImage from '../../framework/ui/image/square-image.ui';
+import MainVideoContainer from '../../framework/ui/container/main/main-video-container.ui';
 
 interface IState {
   account: string;
@@ -67,114 +69,148 @@ export class MainPresenter extends BasePresenter<any, IState> {
       {image: require('../../../assets/images/image2.jpeg'), name: '청하'},
       {image: require('../../../assets/images/image3.jpeg'), name: '한채영'},
       {image: require('../../../assets/images/image4.jpeg'), name: '경리'},
+      {image: require('../../../assets/images/image2.jpeg'), name: '청하'},
+      {image: require('../../../assets/images/image3.jpeg'), name: '한채영'},
+      {image: require('../../../assets/images/image4.jpeg'), name: '경리'},
+      {image: require('../../../assets/images/image2.jpeg'), name: '청하'},
+      {image: require('../../../assets/images/image3.jpeg'), name: '한채영'},
+      {image: require('../../../assets/images/image4.jpeg'), name: '경리'},
     ];
+    const kwaveVideo = {
+      image: require('../../../assets/images/image4.jpeg'),
+      title: 'Kwave 스타들의 축전',      
+    }
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle={'light-content'} />
-          <ScrollView
-            style={styles.wrapper}
-            showsVerticalScrollIndicator={false}
-            showsHorizontalScrollIndicator={false}>
-            <MainSectionContainer isFirst={true}>
-              <MainSectionTitle title={this.lang.main.followList} />
-              <MainHorizontalScroll>
-                {mockData.map((v, k) => {
-                  const isLast = mockData.length == k + 1;
-                  return (
-                    <MainFollowContainer index={k}>
-                      <CircleImage
-                        isLast={isLast}
-                        source={v.image}
-                        width={64}
-                        height={64}
-                      />
-                      <Text style={{textAlign: 'center'}}>{v.name}</Text>
-                    </MainFollowContainer>
-                  );
-                })}
-              </MainHorizontalScroll>
-            </MainSectionContainer>
-
-            <MainSectionContainer isFirst={false}>
-              <MainSectionTitle title={this.lang.main.starList} />
-              <MainHorizontalScroll>
-                {mockData.map((v, k) => {
-                  const isLast = mockData.length == k + 1;
-                  return (
-                    <MainFollowContainer index={k}>
-                      <CircleImage
-                        isLast={isLast}
-                        source={v.image}
-                        width={64}
-                        height={64}
-                      />
-                      <Text style={{textAlign: 'center'}}>{v.name}</Text>
-                    </MainFollowContainer>
-                  );
-                })}
-              </MainHorizontalScroll>
-            </MainSectionContainer>
-
-            <MainSectionContainer isFirst={false}>
-              <MainSectionTitle title={this.lang.main.playVote} />
-              <MainHorizontalScroll>
-                {mockData.map((v, k) => {
-                  const isLast = mockData.length == k + 1;
-                  return (
-                    <MainFollowContainer index={k}>
-                      <CircleImage
-                        isLast={isLast}
-                        source={v.image}
-                        width={64}
-                        height={64}
-                      />
-                      {/* <Text style={{textAlign: 'center'}}>{v.name}</Text> */}
-                    </MainFollowContainer>
-                  );
-                })}
-              </MainHorizontalScroll>
-            </MainSectionContainer>
-
-            <MainSectionContainer isFirst={false}>
-              <MainSectionTitle title={this.lang.main.starRanking} />
-              <MainHorizontalScroll>
-                {mockData.map((v, k) => {
-                  const isLast = mockData.length == k + 1;
-                  return (
-                    <MainFollowContainer index={k}>
-                      <CircleImage
-                        isLast={isLast}
-                        source={v.image}
-                        width={64}
-                        height={64}
-                      />
-                      <Text style={{textAlign: 'center'}}>{v.name}</Text>
-                    </MainFollowContainer>
-                  );
-                })}
-              </MainHorizontalScroll>
-            </MainSectionContainer>
-
-            <MainSectionContainer isFirst={false}>
-              <MainSectionTitle title={this.lang.main.suppotersRanking} />
-              <MainHorizontalScroll>
-                {mockData.map((v, k) => {
-                  const isLast = mockData.length == k + 1;
-                  return (
-                    <MainFollowContainer index={k}>
-                      <CircleImage
-                        isLast={isLast}
-                        source={v.image}
-                        width={64}
-                        height={64}
-                      />
-                      <Text style={{textAlign: 'center'}}>{v.name}</Text>
-                    </MainFollowContainer>
-                  );
-                })}
-              </MainHorizontalScroll>
-            </MainSectionContainer>
-          </ScrollView>
+        <ScrollView
+          style={styles.wrapper}
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}>
+          <MainSectionContainer isFirst={true}>
+            <MainSectionTitle title={this.lang.main.followList} />
+            <MainHorizontalScroll>
+              {mockData.map((v, k) => {
+                const isLast = mockData.length == k + 1;
+                return (
+                  <MainFollowContainer index={k}>
+                    <CircleImage
+                      isLast={isLast}
+                      source={v.image}
+                      width={64}
+                      height={64}
+                    />
+                    <Text style={{textAlign: 'center'}}>{v.name}</Text>
+                  </MainFollowContainer>
+                );
+              })}
+            </MainHorizontalScroll>
+          </MainSectionContainer>
+          <MainSectionContainer isFirst={false}>
+            <MainSectionTitle title={this.lang.main.kwaveVideo} />
+            <MainVideoContainer>
+              <SquareImage
+                source={kwaveVideo.image}                
+                width={Dimensions.get('window').width}
+                height={200}
+              />
+              <Text style={{textAlign:'left'}}>{kwaveVideo.title}</Text>
+            </MainVideoContainer>
+          </MainSectionContainer>
+          <MainSectionContainer isFirst={false}>
+            <MainSectionTitle title={this.lang.main.starList} />
+            <MainHorizontalScroll>
+              {mockData.map((v, k) => {
+                const isLast = mockData.length == k + 1;
+                return (
+                  <MainFollowContainer index={k}>
+                    <CircleImage
+                      isLast={isLast}
+                      source={v.image}
+                      width={64}
+                      height={64}
+                    />
+                    <Text style={{textAlign: 'center'}}>{v.name}</Text>
+                  </MainFollowContainer>
+                );
+              })}
+            </MainHorizontalScroll>
+          </MainSectionContainer>
+          <MainSectionContainer isFirst={false}>
+            <MainSectionTitle title={this.lang.main.playVote} />
+            <MainHorizontalScroll>
+              {mockData.map((v, k) => {
+                const isLast = mockData.length == k + 1;
+                return (
+                  <MainFollowContainer index={k}>
+                    <CircleImage
+                      isLast={isLast}
+                      source={v.image}
+                      width={64}
+                      height={64}
+                    />                    
+                  </MainFollowContainer>
+                );
+              })}
+            </MainHorizontalScroll>
+          </MainSectionContainer>
+          <MainSectionContainer isFirst={false}>
+            <MainSectionTitle title={this.lang.main.wishVideo} />
+          </MainSectionContainer>
+          <MainSectionContainer isFirst={false}>
+            <MainSectionTitle title={this.lang.main.starRanking} />
+            <MainHorizontalScroll>
+              {mockData.map((v, k) => {
+                const isLast = mockData.length == k + 1;
+                return (
+                  <MainFollowContainer index={k}>
+                    <CircleImage
+                      isLast={isLast}
+                      source={v.image}
+                      width={64}
+                      height={64}
+                    />
+                    <Text style={{textAlign: 'center'}}>{v.name}</Text>
+                  </MainFollowContainer>
+                );
+              })}
+            </MainHorizontalScroll>
+          </MainSectionContainer>
+          <MainSectionContainer isFirst={false}>
+            <MainSectionTitle title={this.lang.main.suppotersRanking} />
+            <MainHorizontalScroll>
+              {mockData.map((v, k) => {
+                const isLast = mockData.length == k + 1;
+                return (
+                  <MainFollowContainer index={k}>
+                    <CircleImage
+                      isLast={isLast}
+                      source={v.image}
+                      width={64}
+                      height={64}
+                    />
+                    <Text style={{textAlign: 'center'}}>{v.name}</Text>
+                  </MainFollowContainer>
+                );
+              })}
+            </MainHorizontalScroll>
+          </MainSectionContainer>
+          <MainSectionContainer isFirst={false}>
+            <MainSectionTitle title={this.lang.main.hotVideo} />
+          </MainSectionContainer>
+          <MainSectionContainer isFirst={false}>
+            <MainSectionTitle title={this.lang.main.kwaveNft} />
+          </MainSectionContainer>
+          <MainSectionContainer isFirst={false}>
+            <MainSectionTitle title={this.lang.main.starShop} />
+          </MainSectionContainer>
+          <MainSectionContainer isFirst={false}>
+            <MainSectionTitle title={this.lang.main.kwaveNews} />
+          </MainSectionContainer>
+          <MainSectionContainer isFirst={false}>
+            <MainSectionTitle title={this.lang.main.kwaveModels} />
+          </MainSectionContainer>
+        </ScrollView>
       </SafeAreaView>
     );
   }
@@ -183,10 +219,9 @@ export class MainPresenter extends BasePresenter<any, IState> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
   },
   wrapper: {
-    paddingTop: 16,    
+    paddingTop: 16,
     backgroundColor: '#fff',
   },
   slide1: {

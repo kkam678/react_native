@@ -36,7 +36,7 @@ export default class MainSectionTitle extends Component<any, any> {
 
 const styles = StyleSheet.create({
     wrap:{
-        
+        paddingLeft:16,
     },
     title: {
         color: Color.black,

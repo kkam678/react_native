@@ -20,7 +20,7 @@ export default class MainSectionContainer extends Component<iProps, any> {
 
 const styles = StyleSheet.create({
   container:{
-    paddingLeft: 16,
+    marginHorizontal: 0,
   },
   fromSecond:{
     marginTop:32,    

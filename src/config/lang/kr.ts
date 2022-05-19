@@ -10,11 +10,17 @@ export default() => {
         },
         main: {
             followList: 'MY STAR LIST',
-            starList: 'Star List',
+            starList: 'STAR LIST',
             playVote: 'PLAY VOTE!',
-            starRanking: 'Star Ranking',
-            suppotersRanking: 'Suppotors Ranking',
-            kwaveVideo: 'KWAVE Video',
+            starRanking: 'STAR RANKING',
+            suppotersRanking: 'SUPPORTERS RANKING',
+            kwaveVideo: 'KWAVE VIDEO',
+            wishVideo:'WISH VIDEO',
+            hotVideo: 'HOT VIDEO',
+            kwaveNft: 'KWAVE NFT',
+            starShop: 'STAR SHOP',
+            kwaveNews: 'KWAVE NEWS',
+            kwaveModels: 'KWAVE MODELS',
         }
     }
 }

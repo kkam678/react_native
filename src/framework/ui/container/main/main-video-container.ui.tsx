@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
+import {Dimensions, FlatList, StyleSheet, View} from 'react-native';
 import {container} from '../../../style/container.style';
 
-export default class MainFollowContainer extends Component<any, any> {
+export default class MainVideoContainer extends Component<any, any> {
   constructor(props: any) {
     super(props);
   }
@@ -16,11 +16,10 @@ export default class MainFollowContainer extends Component<any, any> {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        marginLeft: 16,        
-        display: 'flex',
-        alignItems:'center',
-        justifyContent:'center',
+    container: {     
+        padding:16,          
+        width:'100%',
+        overflow: 'hidden',
     },
     
 });
