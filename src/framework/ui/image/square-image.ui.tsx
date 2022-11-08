@@ -1,7 +1,6 @@
 import {width} from '@fortawesome/free-solid-svg-icons/faHome';
 import React, {Component} from 'react';
 import {Image, StyleSheet, View} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
 
 interface IProps {
   isLast: boolean;
@@ -47,6 +46,5 @@ const styles = StyleSheet.create({
   },
   image: {
     resizeMode: 'cover',
-    
   },
 });

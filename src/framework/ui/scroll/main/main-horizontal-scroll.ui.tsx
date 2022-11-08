@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
+import {ScrollView, StyleSheet, View} from 'react-native';
 
 interface IProps {
   title: string;
@@ -32,7 +31,5 @@ const styles = StyleSheet.create({
   container: {
     height: 84,
   },
-  scrollView: {
-    
-  },
+  scrollView: {},
 });
