@@ -3,15 +3,16 @@ import {LoginViewModel} from '../../../application/view-model/login.view-model';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import { Color } from '../../style/color.config';
+import {Color} from '../../style/color.config';
+import {LoginNavigator} from '../../../interface/navigator/login.navigator';
 
 export default class TabNavigationAppendMenu extends Component<any, any> {
   constructor(props: any) {
     super(props);
+    console.log('this.props', this.props);
   }
 
   componentDidMount() {}
-
   render() {
     return (
       <View style={styles.container}>
@@ -25,7 +26,9 @@ export default class TabNavigationAppendMenu extends Component<any, any> {
           <TouchableOpacity style={styles.button}>
             <FontAwesomeIcon icon={['fas', 'search']} style={styles.search} />
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.buttonLast]}>
+          <TouchableOpacity
+            style={[styles.button, styles.buttonLast]}
+            onPress={this.props.onPressMypage}>
             <FontAwesomeIcon icon={['far', 'user']} style={styles.search} />
           </TouchableOpacity>
         </View>

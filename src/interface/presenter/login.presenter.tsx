@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import {Alert, SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {ILoginViewModel} from '../../domain/use-case/ilogin.view-model.';
 import {Container} from 'typedi';
 import {BasePresenter} from './base.presenter';
@@ -43,8 +43,10 @@ export class LoginPresenter extends BasePresenter<any, IState> {
     this.viewModel.setPassword(newText);
   };
 
-  handleLogin = () => {
-    this.viewModel.verifyAuthToken();
+  handleLogin = () => {};
+
+  handlePressJoin = () => {
+    this.props.navigation.navigate('Login2');
   };
 
   handleGoogleLogin = () => {};
@@ -58,6 +60,7 @@ export class LoginPresenter extends BasePresenter<any, IState> {
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle={'light-content'} />
         <LoginTopBlock
+          onPress={this.handlePressJoin}
           titleTop={this.lang.login.loginSubTitleTop}
           titleBottom={this.lang.login.loginSubTitleBottom}
         />
@@ -71,7 +74,10 @@ export class LoginPresenter extends BasePresenter<any, IState> {
             placeholder={this.lang.login.inputPassword}
             onChangeText={this.handleChangePassword}
           />
-          <LoginButton label={this.lang.login.doLogin} onPress={this.handleLogin} />
+          <LoginButton
+            label={this.lang.login.doLogin}
+            onPress={this.handleLogin}
+          />
           <LoginLostContainer>
             <LoginLostButton />
           </LoginLostContainer>

@@ -17,6 +17,8 @@ import {library} from '@fortawesome/fontawesome-svg-core';
 import {faBell, fas} from '@fortawesome/free-solid-svg-icons';
 import {fab} from '@fortawesome/free-brands-svg-icons';
 import {far} from '@fortawesome/free-regular-svg-icons';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {LiveNavigator} from './src/interface/navigator/live.navigator';
 
 interface IProps {}
 
@@ -32,15 +34,21 @@ class App extends Component<IProps, IState> {
     library.add(fas, far, fab, faBell);
   }
   render() {
+    const Stack = createNativeStackNavigator();
     const rootStore = new RootStore();
     return (
       <Provider {...rootStore}>
         <NavigationContainer>
-          <MainNavigator />
+          <Stack.Navigator screenOptions={{headerShown: false}}>
+            <Stack.Group>
+              <Stack.Screen name="Main" component={MainNavigator} />
+              <Stack.Screen name="Login" component={LoginNavigator} />
+            </Stack.Group>
+            <Stack.Group screenOptions={{presentation: 'fullScreenModal'}}>
+              <Stack.Screen name="Live" component={LiveNavigator} />
+            </Stack.Group>
+          </Stack.Navigator>
         </NavigationContainer>
-        {/* <NavigationContainer>                           
-                    <LoginNavigator/>
-                </NavigationContainer> */}
       </Provider>
     );
   }

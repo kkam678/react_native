@@ -36,7 +36,6 @@ export class MainPresenter extends BasePresenter<any, IState> {
       account: '',
       password: '',
     };
-
     this.viewModel = this.props.loginViewModel;
     // isDarkMode: Appearance.getColorScheme() === 'dark'
   }

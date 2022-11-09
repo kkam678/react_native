@@ -17,11 +17,25 @@ import TabNavigationAppendMenu from '../../framework/ui/header/tab-navigation-ap
 import {Color} from '../../framework/style/color.config';
 import {FontFamily} from '../../framework/style/font-family.config';
 import {FontSize} from '../../framework/style/font-size.config';
+
 export class MainNavigator extends Component<any, any> {
   constructor(props: any) {
     super(props);
   }
   componentDidMount() {}
+
+  handlePressMyPage = () => {
+    this.props.navigation.navigate('Live');
+  };
+
+  headerRight(props: any) {
+    return (
+      <TabNavigationAppendMenu
+        {...props}
+        onPressMypage={this.handlePressMyPage}
+      />
+    );
+  }
 
   render() {
     const Tab = createBottomTabNavigator();
@@ -83,7 +97,7 @@ export class MainNavigator extends Component<any, any> {
                 />
               </TabNavigationHeader>
             ),
-            headerRight: props => <TabNavigationAppendMenu />,
+            headerRight: props => this.headerRight(props),
             //   headerStyle: {
             //     backgroundColor: '#f4511e',
             //   },
@@ -102,7 +116,7 @@ export class MainNavigator extends Component<any, any> {
                 <Text style={styles.title}>VOTE</Text>
               </TabNavigationHeader>
             ),
-            headerRight: props => <TabNavigationAppendMenu />,
+            headerRight: props => this.headerRight(props),
           }}
         />
         <Tab.Screen
@@ -114,7 +128,7 @@ export class MainNavigator extends Component<any, any> {
                 <Text style={styles.title}>GALLERY</Text>
               </TabNavigationHeader>
             ),
-            headerRight: props => <TabNavigationAppendMenu />,
+            headerRight: props => this.headerRight(props),
           }}
         />
         <Tab.Screen
@@ -126,7 +140,7 @@ export class MainNavigator extends Component<any, any> {
                 <Text style={styles.title}>NFT</Text>
               </TabNavigationHeader>
             ),
-            headerRight: props => <TabNavigationAppendMenu />,
+            headerRight: props => this.headerRight(props),
           }}
         />
         <Tab.Screen
@@ -138,7 +152,7 @@ export class MainNavigator extends Component<any, any> {
                 <Text style={styles.title}>SHOP</Text>
               </TabNavigationHeader>
             ),
-            headerRight: props => <TabNavigationAppendMenu />,
+            headerRight: props => this.headerRight(props),
           }}
         />
       </Tab.Navigator>
