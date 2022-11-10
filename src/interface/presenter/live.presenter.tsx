@@ -24,6 +24,12 @@ export default function LivePresenter(props: any) {
   );
   const [playerRef, setPlayerRef] = useState<any>(undefined);
   const [cameraPreview, setCameraPreview] = useState<boolean>(false);
+  const [audioPreview, setAudioPreview] = useState<any>({
+    bitrate: 32000,
+    profile: 1,
+    samplerate: 44100,
+  });
+
   const isFocused = useIsFocused();
   const requestCameraPermission = async () => {
     try {
@@ -70,6 +76,11 @@ export default function LivePresenter(props: any) {
           onPress: () => {
             if (playerRef) playerRef.stop();
             setCameraPreview(false);
+            setAudioPreview({
+              bitrate: 0,
+              profile: 0,
+              samplerate: 8000,
+            });
             navigation.dispatch(e.data.action);
           },
         },
@@ -86,9 +97,9 @@ export default function LivePresenter(props: any) {
             setPlayerRef(vb);
           }}
           outputUrl={pushserver}
-          //cameraId: 0 후면, cameraId: 1 wjks
+          //cameraId: 0 후면, cameraId: 1 전면
           camera={{cameraId: 1, cameraFrontMirror: true}}
-          audio={{bitrate: 32000, profile: 1, samplerate: 44100}}
+          audio={audioPreview}
           video={{
             preset: 1,
             bitrate: 500000,
