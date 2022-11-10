@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Text, View} from 'react-native';
-import {LivePresenter} from '../presenter/live.presenter';
+import LivePresenter from '../presenter/live.presenter';
 
 const Stack = createNativeStackNavigator();
 export class LiveNavigator extends React.Component<any, any> {
@@ -12,9 +12,9 @@ export class LiveNavigator extends React.Component<any, any> {
 
   render() {
     return (
-      <Stack.Navigator initialRouteName="Live">
+      <Stack.Navigator initialRouteName="LiveSetting">
         <Stack.Screen
-          name="Live"
+          name="LiveSetting"
           component={LivePresenter}
           options={{
             title: '라이브 준비',
