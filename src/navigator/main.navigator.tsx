@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {LoginPresenter} from '../screen/login.presenter';
+import {LoginScreen} from '../screen/login.screen';
 import {Image, ImageComponent, StyleSheet, Text, View} from 'react-native';
-import {MainPresenter} from '../screen/main.presenter';
+import {MainScreen} from '../screen/main.screen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faHome} from '@fortawesome/free-solid-svg-icons/faHome';
@@ -87,7 +87,7 @@ export class MainNavigator extends Component<any, any> {
         })}>
         <Tab.Screen
           name="MAIN"
-          component={MainPresenter}
+          component={MainScreen}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
@@ -109,7 +109,7 @@ export class MainNavigator extends Component<any, any> {
         />
         <Tab.Screen
           name="VOTE"
-          component={MainPresenter}
+          component={MainScreen}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
@@ -121,7 +121,7 @@ export class MainNavigator extends Component<any, any> {
         />
         <Tab.Screen
           name="GALLERY"
-          component={MainPresenter}
+          component={MainScreen}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
@@ -133,7 +133,7 @@ export class MainNavigator extends Component<any, any> {
         />
         <Tab.Screen
           name="NFT"
-          component={MainPresenter}
+          component={MainScreen}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
@@ -145,7 +145,7 @@ export class MainNavigator extends Component<any, any> {
         />
         <Tab.Screen
           name="SHOP"
-          component={MainPresenter}
+          component={MainScreen}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>

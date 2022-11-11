@@ -2,7 +2,7 @@ import React from 'react';
 import {Alert, SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {ILoginViewModel} from '../view-model/ilogin.view-model.';
 import {Container} from 'typedi';
-import {BasePresenter} from './base.presenter';
+import {BaseScreen} from './base.screen';
 import LoginForm from '../component/container/login/login-form.ui';
 import SubHeader from '../component/header/sub-header.ui';
 import {inject} from 'mobx-react';
@@ -19,7 +19,7 @@ interface IState {
 }
 
 @inject('loginViewModel')
-export class LoginPresenter extends BasePresenter<any, IState> {
+export class LoginScreen extends BaseScreen<any, IState> {
   private readonly viewModel: ILoginViewModel;
 
   constructor(props: any) {

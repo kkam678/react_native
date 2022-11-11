@@ -1,7 +1,7 @@
 import LocalizedStrings from 'react-localization';
 import kr from '../config/lang/kr';
 import {Component} from 'react';
-export class BasePresenter<Props, State> extends Component<Props, State> {
+export class BaseScreen<Props, State> extends Component<Props, State> {
   protected readonly lang;
   constructor(props: Props) {
     super(props);

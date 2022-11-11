@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 import {ILoginViewModel} from '../view-model/ilogin.view-model.';
-import {BasePresenter} from './base.presenter';
+import {BaseScreen} from './base.screen';
 import {inject} from 'mobx-react';
 import MainSectionContainer from '../component/container/main/main-section-container.ui';
 import MainSectionTitle from '../component/title/main/main-section-title.ui';
@@ -27,7 +27,7 @@ interface IState {
 }
 
 @inject('loginViewModel')
-export class MainPresenter extends BasePresenter<any, IState> {
+export class MainScreen extends BaseScreen<any, IState> {
   private readonly viewModel: ILoginViewModel;
 
   constructor(props: any) {
