@@ -160,10 +160,10 @@ export default function LiveStartScreen(props: any) {
         camera={{cameraId: 1, cameraFrontMirror: true}}
         audio={audioPreview}
         video={{
-          preset: 1,
+          preset: 4,
           bitrate: 500000,
-          profile: 1,
-          fps: 15,
+          profile: 0,
+          fps: 30,
           videoFrontMirror: false,
         }}
         smoothSkinLevel={3}

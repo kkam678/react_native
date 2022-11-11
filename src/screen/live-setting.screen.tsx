@@ -89,8 +89,8 @@ export default function LiveSettingScreen(props: any) {
           device_type: 2,
           device_info: 'SM-A336N',
           show_state: 1,
-          width: 360,
-          height: 640,
+          width: 720,
+          height: 1280,
         }).toJson(),
       );
       console.log('WebSocket OPEN!!');
@@ -158,9 +158,9 @@ export default function LiveSettingScreen(props: any) {
           camera={{cameraId: 1, cameraFrontMirror: true}}
           audio={audioPreview}
           video={{
-            preset: 1,
+            preset: 4,
             bitrate: 500000,
-            profile: 1,
+            profile: 0,
             fps: 30,
             videoFrontMirror: false,
           }}
