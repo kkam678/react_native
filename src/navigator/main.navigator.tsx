@@ -29,12 +29,7 @@ export class MainNavigator extends Component<any, any> {
   };
 
   headerRight(props: any) {
-    return (
-      <TabNavigationAppendMenu
-        {...props}
-        onPressMypage={this.handlePressMyPage}
-      />
-    );
+    return <TabNavigationAppendMenu {...props} onPressMypage={this.handlePressMyPage} />;
   }
 
   render() {

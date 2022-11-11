@@ -62,6 +62,6 @@ export class CreateRoomDto extends BaseSocketDto {
     return this.vod_key;
   }
   public getUser(): SocketUser {
-    return this.user;
+    return {...this.user};
   }
 }

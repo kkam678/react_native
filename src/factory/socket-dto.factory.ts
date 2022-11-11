@@ -3,7 +3,7 @@ import {SocketType} from '../model/socket/socket-send-param';
 
 export class SocketDtoFactory {
   public static make<T>(type: SocketType, data: T) {
-    let dto = null;
+    let dto = {};
     switch (type) {
       case 'io.agora.ws.CreateRoom':
         dto = new CreateRoomDto(data);

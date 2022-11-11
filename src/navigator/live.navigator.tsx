@@ -23,6 +23,15 @@ export class LiveNavigator extends React.Component<any, any> {
             animation: 'slide_from_bottom',
           }}
         />
+        <Stack.Screen
+          name="LiveStart"
+          component={LiveStartScreen}
+          options={{
+            title: '라이브 방송',
+            headerShown: false,
+            animation: 'slide_from_bottom',
+          }}
+        />
       </Stack.Navigator>
     );
   }

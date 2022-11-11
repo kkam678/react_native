@@ -27,6 +27,7 @@ export default function LiveSettingScreen(props: any) {
   const [permission, setPermission] = useState<boolean>(false);
   const [playerRef, setPlayerRef] = useState<any>(undefined);
   const [cameraPreview, setCameraPreview] = useState<boolean>(false);
+  const [dto, setDto] = useState({});
   const [audioPreview, setAudioPreview] = useState<AudioProps>({
     bitrate: 32000,
     profile: 1,
@@ -68,7 +69,10 @@ export default function LiveSettingScreen(props: any) {
   };
 
   const socket = React.useRef(new WebSocket(`ws://${socketServerHost}:8000/wsock`)).current;
-  const handlePressStartLive = () => {};
+  const handlePressStartLive = () => {
+    console.log('dto', dto);
+    navigation.navigate('LiveStart', dto);
+  };
 
   useEffect(() => {
     if (Platform.OS === 'android') {
@@ -83,8 +87,10 @@ export default function LiveSettingScreen(props: any) {
           subject: 'TEST',
           screen_type: 2,
           device_type: 2,
-          device_info: modelInfo,
+          device_info: 'SM-A336N',
           show_state: 1,
+          width: 360,
+          height: 640,
         }).toJson(),
       );
       console.log('WebSocket OPEN!!');
@@ -94,8 +100,7 @@ export default function LiveSettingScreen(props: any) {
         const message = JSON.parse(e.data);
         const {type, data} = message;
         const dto = SocketDtoFactory.make<CreateRoomResponse>(type, data);
-        console.log(dto);
-        navigation.navigate('LiveStart', dto);
+        setDto(dto);
       } catch (e) {
         console.log(e);
       }

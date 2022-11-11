@@ -14,6 +14,8 @@ export interface CreateRoomProps {
   device_type: DeviceType;
   device_info: string;
   show_state: number;
+  width: number;
+  height: number;
 }
 export class CreateRoom extends SocketSendParam implements ISocketData {
   public site_key: number = 0;
@@ -23,6 +25,8 @@ export class CreateRoom extends SocketSendParam implements ISocketData {
   public device_type: DeviceType = 2;
   public device_info: string = '';
   public show_state: number = 1;
+  public width: number = 720;
+  public height: number = 1280;
 
   constructor(props: CreateRoomProps) {
     super('io.agora.ws.CreateRoom', props);
