@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {LoginPresenter} from '../presenter/login.presenter';
+import {LoginPresenter} from '../screen/login.presenter';
 import {Text, View} from 'react-native';
 
 const Stack = createNativeStackNavigator();

@@ -9,17 +9,17 @@ import {
   Text,
   View,
 } from 'react-native';
-import {ILoginViewModel} from '../../domain/use-case/ilogin.view-model.';
+import {ILoginViewModel} from '../view-model/ilogin.view-model.';
 import {BasePresenter} from './base.presenter';
 import {inject} from 'mobx-react';
-import MainSectionContainer from '../../framework/ui/container/main/main-section-container.ui';
-import MainSectionTitle from '../../framework/ui/title/main/main-section-title.ui';
-import MainSwiper from '../../framework/ui/scroll/main/main-horizontal-scroll.ui';
-import MainHorizontalScroll from '../../framework/ui/scroll/main/main-horizontal-scroll.ui';
-import CircleImage from '../../framework/ui/image/circle-image.ui';
-import MainFollowContainer from '../../framework/ui/container/main/main-follow-container.ui';
-import SquareImage from '../../framework/ui/image/square-image.ui';
-import MainVideoContainer from '../../framework/ui/container/main/main-video-container.ui';
+import MainSectionContainer from '../component/container/main/main-section-container.ui';
+import MainSectionTitle from '../component/title/main/main-section-title.ui';
+import MainSwiper from '../component/scroll/main/main-horizontal-scroll.ui';
+import MainHorizontalScroll from '../component/scroll/main/main-horizontal-scroll.ui';
+import CircleImage from '../component/image/circle-image.ui';
+import MainFollowContainer from '../component/container/main/main-follow-container.ui';
+import SquareImage from '../component/image/square-image.ui';
+import MainVideoContainer from '../component/container/main/main-video-container.ui';
 
 interface IState {
   account: string;
@@ -62,21 +62,21 @@ export class MainPresenter extends BasePresenter<any, IState> {
 
   render() {
     const mockData = [
-      {image: require('../../../assets/images/image2.jpeg'), name: '청하'},
-      {image: require('../../../assets/images/image3.jpeg'), name: '한채영'},
-      {image: require('../../../assets/images/image4.jpeg'), name: '경리'},
-      {image: require('../../../assets/images/image2.jpeg'), name: '청하'},
-      {image: require('../../../assets/images/image3.jpeg'), name: '한채영'},
-      {image: require('../../../assets/images/image4.jpeg'), name: '경리'},
-      {image: require('../../../assets/images/image2.jpeg'), name: '청하'},
-      {image: require('../../../assets/images/image3.jpeg'), name: '한채영'},
-      {image: require('../../../assets/images/image4.jpeg'), name: '경리'},
-      {image: require('../../../assets/images/image2.jpeg'), name: '청하'},
-      {image: require('../../../assets/images/image3.jpeg'), name: '한채영'},
-      {image: require('../../../assets/images/image4.jpeg'), name: '경리'},
+      {image: require('../../assets/images/image2.jpeg'), name: '청하'},
+      {image: require('../../assets/images/image3.jpeg'), name: '한채영'},
+      {image: require('../../assets/images/image4.jpeg'), name: '경리'},
+      {image: require('../../assets/images/image2.jpeg'), name: '청하'},
+      {image: require('../../assets/images/image3.jpeg'), name: '한채영'},
+      {image: require('../../assets/images/image4.jpeg'), name: '경리'},
+      {image: require('../../assets/images/image2.jpeg'), name: '청하'},
+      {image: require('../../assets/images/image3.jpeg'), name: '한채영'},
+      {image: require('../../assets/images/image4.jpeg'), name: '경리'},
+      {image: require('../../assets/images/image2.jpeg'), name: '청하'},
+      {image: require('../../assets/images/image3.jpeg'), name: '한채영'},
+      {image: require('../../assets/images/image4.jpeg'), name: '경리'},
     ];
     const kwaveVideo = {
-      image: require('../../../assets/images/image4.jpeg'),
+      image: require('../../assets/images/image4.jpeg'),
       title: 'Kwave 스타들의 축전',
     };
     return (

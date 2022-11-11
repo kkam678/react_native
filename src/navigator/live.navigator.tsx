@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Text, View} from 'react-native';
-import LivePresenter from '../presenter/live.presenter';
+import LivePresenter from '../screen/live.presenter';
 
 const Stack = createNativeStackNavigator();
 export class LiveNavigator extends React.Component<any, any> {

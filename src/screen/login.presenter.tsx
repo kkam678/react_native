@@ -1,17 +1,17 @@
 import React from 'react';
 import {Alert, SafeAreaView, StatusBar, StyleSheet} from 'react-native';
-import {ILoginViewModel} from '../../domain/use-case/ilogin.view-model.';
+import {ILoginViewModel} from '../view-model/ilogin.view-model.';
 import {Container} from 'typedi';
 import {BasePresenter} from './base.presenter';
-import LoginForm from '../../framework/ui/container/login/login-form.ui';
-import SubHeader from '../../framework/ui/header/sub-header.ui';
+import LoginForm from '../component/container/login/login-form.ui';
+import SubHeader from '../component/header/sub-header.ui';
 import {inject} from 'mobx-react';
-import LoginAccount from '../../framework/ui/input/login/login-account.ui';
-import LoginPassword from '../../framework/ui/input/login/login-password.ui';
-import LoginButton from '../../framework/ui/button/login/login-button.ui';
-import LoginLostContainer from '../../framework/ui/container/login/login-lost-container.ui';
-import LoginLostButton from '../../framework/ui/button/login/login-lost-button.ui';
-import LoginTopBlock from '../../framework/ui/block/login/login-top-block.ui';
+import LoginAccount from '../component/input/login/login-account.ui';
+import LoginPassword from '../component/input/login/login-password.ui';
+import LoginButton from '../component/button/login/login-button.ui';
+import LoginLostContainer from '../component/container/login/login-lost-container.ui';
+import LoginLostButton from '../component/button/login/login-lost-button.ui';
+import LoginTopBlock from '../component/block/login/login-top-block.ui';
 
 interface IState {
   account: string;

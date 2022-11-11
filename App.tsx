@@ -8,17 +8,17 @@
 
 import React, {Component} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {LoginNavigator} from './src/interface/navigator/login.navigator';
+import {LoginNavigator} from './src/navigator/login.navigator';
 import BaseInjection from './src/config/base.injection';
 import {Provider} from 'mobx-react';
-import RootStore from './src/interface/store/root.store';
-import {MainNavigator} from './src/interface/navigator/main.navigator';
+import RootStore from './src/store/root.store';
+import {MainNavigator} from './src/navigator/main.navigator';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {faBell, fas} from '@fortawesome/free-solid-svg-icons';
 import {fab} from '@fortawesome/free-brands-svg-icons';
 import {far} from '@fortawesome/free-regular-svg-icons';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {LiveNavigator} from './src/interface/navigator/live.navigator';
+import {LiveNavigator} from './src/navigator/live.navigator';
 
 interface IProps {}
 

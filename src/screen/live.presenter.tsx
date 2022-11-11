@@ -1,8 +1,5 @@
-import React, {createRef, useEffect, useState} from 'react';
+import React, {createRef, useEffect, useRef, useState} from 'react';
 import {Alert, BackHandler, StyleSheet} from 'react-native';
-import {ILoginViewModel} from '../../domain/use-case/ilogin.view-model.';
-import {BasePresenter} from './base.presenter';
-import {inject} from 'mobx-react';
 import {
   Text,
   TextInput,
@@ -14,6 +11,8 @@ import {
 
 import {NodeCameraView} from 'react-native-nodemediaclient';
 import {useIsFocused} from '@react-navigation/native';
+import {io} from 'socket.io-client';
+import {getModel} from 'react-native-device-info';
 
 export default function LivePresenter(props: any) {
   const {navigation} = props;
@@ -55,13 +54,47 @@ export default function LivePresenter(props: any) {
       console.warn(err);
     }
   };
+  const socket = new WebSocket(`wss://mtest.livek.tv:8001/wsock`);
+  const [isConnected, setIsConnected] = useState(false);
+  const [lastPong, setLastPong] = useState<string>('');
+  const [modelInfo, setModelInfo] = useState<string>('info');
   useEffect(() => {
     if (Platform.OS === 'android') {
       requestCameraPermission();
-      console.log('PLAYER REF@@@@@@@@@@@@@', playerRef);
     }
+    socket.onopen = () => {
+      setIsConnected(true);
+      console.log('WebSocket OPEN!!');
+    };
 
-    navigation.addListener('beforeRemove', e => {
+    socket.onmessage = (e: any) => {
+      console.log('WebSocket MESSAGE', e);
+    };
+
+    socket.onclose = (e: any) => {
+      setIsConnected(false);
+      console.log('WebSocket Close');
+    };
+
+    socket.onerror = (e: any) => {
+      setIsConnected(false);
+      console.log(e);
+    };
+
+    // socket.on('connect', () => {
+    //   console.log('CONNECTED');
+    //   setIsConnected(true);
+    // });
+
+    // socket.on('disconnect', () => {
+    //   setIsConnected(false);
+    // });
+
+    // socket.on('pong', () => {
+    //   setLastPong(new Date().toISOString());
+    // });
+
+    navigation.addListener('beforeRemove', (e: any) => {
       // Prevent default behavior of leaving the screen
       e.preventDefault();
 
@@ -82,6 +115,7 @@ export default function LivePresenter(props: any) {
               samplerate: 8000,
             });
             navigation.dispatch(e.data.action);
+            socket.close();
           },
         },
       ]);
@@ -115,6 +149,30 @@ export default function LivePresenter(props: any) {
         />
       ) : null}
       <View>
+        <Text>Connected: {'' + isConnected}</Text>
+        <Text>Last pong: {lastPong || '-'}</Text>
+      </View>
+      <View>
+        <Button
+          onPress={() => {
+            socket.send(
+              JSON.stringify({
+                type: 'io.agora.ws.CreateRoom',
+                data: {
+                  site_key: 31,
+                  user_string: '104070',
+                  subject: 'TEST',
+                  screen_type: 2,
+                  device_type: 2,
+                  device_info: modelInfo,
+                  show_state: 1,
+                },
+              }),
+            );
+          }}
+          color="red"
+          title="Create Room"
+        />
         <Button
           onPress={() => {
             playerRef.switchCamera();
