@@ -9,7 +9,6 @@ import IconFeather from 'react-native-vector-icons/Feather';
 export default class TabNavigationAppendMenu extends Component<any, any> {
   constructor(props: any) {
     super(props);
-    console.log('this.props', this.props);
   }
 
   componentDidMount() {}

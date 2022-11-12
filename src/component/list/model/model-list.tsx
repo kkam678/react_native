@@ -1,11 +1,14 @@
 import React from 'react';
 import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
+import {ModelDto} from '../../../dto/model.dto';
 import {Color} from '../../../style/color.config';
 import CircleImage from '../../image/circle-image.ui';
-
-export function ModelList(props: any) {
+interface IProps {
+  item: ModelDto;
+  index: number;
+}
+export function ModelList(props: IProps) {
   const {item, index} = props;
-  const {image, name} = item;
   const numCols = 2;
   return (
     <View
@@ -16,9 +19,9 @@ export function ModelList(props: any) {
           marginBottom: 2,
         })
       }>
-      <Image source={image} style={styles.image} />
+      <Image source={{uri: item.profile_image}} style={styles.image} />
       <View style={{position: 'absolute', left: 8, bottom: 32}}>
-        <Text style={{color: '#ffffff', fontSize: 12}}>{name}</Text>
+        <Text style={{color: '#ffffff', fontSize: 12}}>{item.nickname}</Text>
       </View>
       <View
         style={{
@@ -32,7 +35,7 @@ export function ModelList(props: any) {
           padding: 2,
           backgroundColor: 'rgba(0,0,0,0.5)',
         }}>
-        <Text style={{color: '#ffffff', fontSize: 12}}>{name}</Text>
+        <Text style={{color: '#ffffff', fontSize: 12}}>{item.introduce}</Text>
       </View>
     </View>
   );

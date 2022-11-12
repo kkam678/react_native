@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import {ILoginViewModel} from '../view-model/ilogin.view-model.';
 import {BaseScreen} from './base.screen';
-import {inject} from 'mobx-react';
+import {inject, observer} from 'mobx-react';
 import MainSectionContainer from '../component/container/main/main-section-container.ui';
 import MainSectionTitle from '../component/title/main/main-section-title.ui';
 import MainSwiper from '../component/scroll/main/main-horizontal-scroll.ui';
@@ -25,6 +25,7 @@ import {VodMainList} from '../component/list/vod-list';
 import {ModelList} from '../component/list/model/model-list';
 import {ModelMainPopularList} from '../component/list/model/model-main-popular-list';
 import {MainViewModel} from '../view-model/main.view-model';
+import {VodDto} from '../dto/vod.dto';
 
 interface IState {
   account: string;
@@ -32,18 +33,20 @@ interface IState {
 }
 
 @inject('loginViewModel', 'mainViewModel')
+@observer
 export class MainScreen extends BaseScreen<any, IState> {
   private readonly viewModel: ILoginViewModel;
   private readonly mainViewModel: MainViewModel;
 
   constructor(props: any) {
     super(props);
+
+    this.viewModel = props.loginViewModel;
+    this.mainViewModel = props.mainViewModel;
     this.state = {
       account: '',
       password: '',
     };
-    this.viewModel = props.loginViewModel;
-    this.mainViewModel = props.mainViewModel;
     // isDarkMode: Appearance.getColorScheme() === 'dark'
   }
 
@@ -107,17 +110,15 @@ export class MainScreen extends BaseScreen<any, IState> {
           <MainSectionContainer isFirst={false}>
             <MainSectionTitle title={this.lang.main.liveBroadcast} />
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-              {this.mainViewModel.live.length > 0
-                ? this.mainViewModel.live.map((v, k) => {
-                    return <VodMainList item={v} index={k} />;
-                  })
-                : null}
+              {this.mainViewModel.live.map((v, k) => {
+                return <VodMainList item={v} index={k} />;
+              })}
             </ScrollView>
           </MainSectionContainer>
           <MainSectionContainer isFirst={false}>
             <MainSectionTitle title={this.lang.main.popularPictorialModel} />
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-              {mockData.map((v, k) => {
+              {this.mainViewModel.hotModel.map((v, k) => {
                 return <ModelMainPopularList item={v} index={k} />;
               })}
             </ScrollView>
@@ -126,7 +127,7 @@ export class MainScreen extends BaseScreen<any, IState> {
             <MainSectionTitle title={this.lang.main.allModel} />
 
             <FlatList
-              data={mockData}
+              data={this.mainViewModel.model}
               initialNumToRender={4}
               renderItem={({item, index}) => <ModelList item={item} index={index} />}
               keyExtractor={(item, index) => String(index)}

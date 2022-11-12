@@ -1,9 +1,13 @@
 import React from 'react';
 import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
+import {ModelDto} from '../../../dto/model.dto';
 
-export function ModelMainPopularList(props: any) {
+interface IProps {
+  item: ModelDto;
+  index: number;
+}
+export function ModelMainPopularList(props: IProps) {
   const {item, index} = props;
-  const {image, name} = item;
   return (
     <View
       style={
@@ -12,9 +16,9 @@ export function ModelMainPopularList(props: any) {
           marginLeft: index === 0 ? 16 : 8,
         })
       }>
-      <Image source={image} style={styles.image} />
+      <Image source={{uri: item.profile_image}} style={styles.image} />
       <View style={{position: 'absolute', left: 8, top: 8}}>
-        <Text style={{color: '#ffffff', fontSize: 12}}>{name}</Text>
+        <Text style={{color: '#ffffff', fontSize: 12}}>{item.nickname}</Text>
       </View>
     </View>
   );

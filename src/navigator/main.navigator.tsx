@@ -41,7 +41,6 @@ export class MainNavigator extends Component<any, any> {
         initialRouteName="MAIN"
         screenOptions={({route}) => ({
           tabBarIcon: ({focused, color, size}) => {
-            console.log(focused, route.name);
             const iconColor = focused ? '#8b4d93' : '#a3a3a3';
             if (route.name === 'MAIN') {
               return <IconOct name="home" size={24} color={iconColor} />;

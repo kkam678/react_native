@@ -1,5 +1,5 @@
 import {plainToInstance} from 'class-transformer';
-import {makeObservable, observable} from 'mobx';
+import {action, makeAutoObservable, makeObservable, observable, runInAction, toJS} from 'mobx';
 import {apiHost} from '../config/constants';
 import {FollowDto} from '../dto/follow.dto';
 import {ModelDto} from '../dto/model.dto';
@@ -14,24 +14,43 @@ export class MainViewModel {
   public hotModel: ModelDto[] = [];
   public model: ModelDto[] = [];
   constructor(props?: any) {
-    makeObservable(this, {
-      live: observable,
-      follow: observable,
-      category: observable,
-      hotModel: observable,
-      model: observable,
-    });
+    // makeObservable(this, {
+    //   live: observable,
+    //   follow: observable,
+    //   category: observable,
+    //   hotModel: observable,
+    //   model: observable,
+    //   requestList: action,
+    // });
+    makeAutoObservable(this);
   }
 
   async requestList() {
     const response = await ApiModule.get<any>(`main`);
-    const {data} = response;
-    const {live, follow, category, hot_model, model} = data;
-
-    if (live.length > 0) {
-      this.live = live.map((item: object) => plainToInstance(VodDto, item));
-    }
-    console.log(this.live);
+    runInAction(() => {
+      const {data} = response;
+      const {live, follow, category, hot_model, model} = data;
+      if (follow.length > 0) {
+        this.follow = [];
+        this.follow = live.map((item: object) => plainToInstance(FollowDto, item));
+      }
+      if (category.length > 0) {
+        this.category = [];
+        this.category = live.map((item: object) => plainToInstance(SiteCategoryDto, item));
+      }
+      if (live.length > 0) {
+        this.live = [];
+        this.live = live.map((item: object) => plainToInstance(VodDto, item));
+      }
+      if (hot_model.length > 0) {
+        this.hotModel = [];
+        this.hotModel = hot_model.map((item: object) => plainToInstance(ModelDto, item));
+      }
+      if (model.length > 0) {
+        this.model = [];
+        this.model = model.map((item: object) => plainToInstance(ModelDto, item));
+      }
+    });
   }
 
   async verifyAuthToken(): Promise<void> {}
