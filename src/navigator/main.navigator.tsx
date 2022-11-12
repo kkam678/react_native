@@ -36,36 +36,12 @@ export class MainNavigator extends Component<any, any> {
 
   render() {
     const Tab = createBottomTabNavigator();
-    const HomeIcon = styled(TabBarHome)<{color: string}>`
-      color: color;
-      width: 24;
-      height: 24;
-    `;
-    const VoteIcon = styled(TabBarVote)<{color: string}>`
-      color: color;
-      width: 24;
-      height: 24;
-    `;
-    const GalleryIcon = styled(TabBarGallery)<{color: string}>`
-      color: color;
-      width: 24;
-      height: 24;
-    `;
-    const NftIcon = styled(TabBarNft)<{color: string}>`
-      color: color;
-      width: 24;
-      height: 24;
-    `;
-    const ShopIcon = styled(TabBarShop)<{color: string}>`
-      color: color;
-      width: 24;
-      height: 24;
-    `;
     return (
       <Tab.Navigator
         initialRouteName="MAIN"
         screenOptions={({route}) => ({
           tabBarIcon: ({focused, color, size}) => {
+            console.log(focused, route.name);
             const iconColor = focused ? '#8b4d93' : '#a3a3a3';
             if (route.name === 'MAIN') {
               return <IconOct name="home" size={24} color={iconColor} />;
@@ -88,10 +64,7 @@ export class MainNavigator extends Component<any, any> {
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
-                <Image
-                  style={{width: 96, height: 21}}
-                  source={require('../../assets/images/logo.png')}
-                />
+                <Text style={styles.title}>PICKMI</Text>
               </TabNavigationHeader>
             ),
             headerRight: props => this.headerRight(props),

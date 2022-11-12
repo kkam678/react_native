@@ -1,10 +1,11 @@
 import {Component} from 'react';
-import {LoginViewModel} from '../../../application/view-model/login.view-model';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {Color} from '../../style/color.config';
-
+import IconFontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import IconFontisto from 'react-native-vector-icons/Fontisto';
+import IconOct from 'react-native-vector-icons/Octicons';
+import IconFeather from 'react-native-vector-icons/Feather';
 export default class TabNavigationAppendMenu extends Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -17,18 +18,18 @@ export default class TabNavigationAppendMenu extends Component<any, any> {
       <View style={styles.container}>
         <View style={styles.wrap}>
           <TouchableOpacity style={styles.button}>
-            <FontAwesomeIcon icon={['far', 'bell']} style={styles.bell} />
+            <IconFontisto name="bell" size={18} color={Color.black} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
-            <FontAwesomeIcon icon={['fas', 'coins']} style={styles.coins} />
+            <IconFontAwesome5 name="coins" size={18} color={Color.yellow} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
-            <FontAwesomeIcon icon={['fas', 'search']} style={styles.search} />
+            <IconFontAwesome5 name="search" size={18} color={Color.black} />
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button, styles.buttonLast]}
             onPress={this.props.onPressMypage}>
-            <FontAwesomeIcon icon={['far', 'user']} style={styles.search} />
+            <IconFontAwesome5 name="user" size={18} color={Color.black} />
           </TouchableOpacity>
         </View>
       </View>
