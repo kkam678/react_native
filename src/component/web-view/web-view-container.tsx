@@ -29,12 +29,23 @@ export function WebviewContainer(props: any) {
       }
     }
   };
+
+  const injectScript = `
+  window.thelive_pickmi = {
+    bridgeAction = (json) => {
+        console.log(json);
+    }
+  }
+`;
+
   return (
     <WebView
+      useWebKit={true}
       nativeConfig={{props: {webContentsDebuggingEnabled: true}}}
       pullToRefreshEnabled={true}
       startInLoadingState={true}
       javaScriptEnabled={true}
+      injectedJavaScript={injectScript}
       onMessage={requestOnMessage}
       mixedContentMode={'compatibility'}
       originWhitelist={['https://*', 'http://*']}
