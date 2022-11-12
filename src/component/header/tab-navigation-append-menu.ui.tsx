@@ -39,7 +39,6 @@ export default class TabNavigationAppendMenu extends Component<any, any> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 8,
     alignItems: 'center',
     justifyContent: 'center',
   },

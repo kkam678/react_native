@@ -20,6 +20,7 @@ import {FontSize} from '../style/font-size.config';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import IconOct from 'react-native-vector-icons/Octicons';
 import IconFeather from 'react-native-vector-icons/Feather';
+import {WebviewContainer} from '../component/web-view/web-view-container';
 export class MainNavigator extends Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -32,6 +33,10 @@ export class MainNavigator extends Component<any, any> {
 
   headerRight(props: any) {
     return <TabNavigationAppendMenu {...props} onPressMypage={this.handlePressMyPage} />;
+  }
+
+  loadWebView(uri: string) {
+    return <WebviewContainer uri={uri} />;
   }
 
   render() {
@@ -78,7 +83,7 @@ export class MainNavigator extends Component<any, any> {
         />
         <Tab.Screen
           name="CHAT"
-          component={MainScreen}
+          component={WebviewContainer}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
@@ -90,7 +95,7 @@ export class MainNavigator extends Component<any, any> {
         />
         <Tab.Screen
           name="GALLERY"
-          component={MainScreen}
+          component={WebviewContainer}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
@@ -102,7 +107,7 @@ export class MainNavigator extends Component<any, any> {
         />
         <Tab.Screen
           name="FEED"
-          component={MainScreen}
+          component={WebviewContainer}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
@@ -114,7 +119,7 @@ export class MainNavigator extends Component<any, any> {
         />
         <Tab.Screen
           name="SHOP"
-          component={MainScreen}
+          component={WebviewContainer}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>

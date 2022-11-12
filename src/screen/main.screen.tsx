@@ -26,6 +26,7 @@ import {ModelList} from '../component/list/model/model-list';
 import {ModelMainPopularList} from '../component/list/model/model-main-popular-list';
 import {MainViewModel} from '../view-model/main.view-model';
 import {VodDto} from '../dto/vod.dto';
+import {FollowDto} from '../dto/follow.dto';
 
 interface IState {
   account: string;
@@ -123,6 +124,7 @@ export class MainScreen extends BaseScreen<any, IState> {
               })}
             </ScrollView>
           </MainSectionContainer>
+
           <MainSectionContainer isFirst={false}>
             <MainSectionTitle title={this.lang.main.allModel} />
 
