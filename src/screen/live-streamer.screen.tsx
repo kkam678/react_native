@@ -9,8 +9,16 @@ import {getModel} from 'react-native-device-info';
 import {socketServerHost} from '../config/constants';
 import {SocketSendParam} from '../model/socket/socket-send-param';
 import {CreateRoom} from '../model/socket/create-room';
-import {CreateRoomDto, CreateRoomResponse} from '../dto/socket/create-room.dto';
+import {CreateRoomDto} from '../dto/socket/create-room.dto';
 import {SocketDtoFactory} from '../factory/socket-dto.factory';
+import {
+  AUDIO_PROFILE_LCAAC,
+  VIDEO_PPRESET_16X9_1080,
+  VIDEO_PPRESET_16X9_480,
+  VIDEO_PPRESET_16X9_720,
+  VIDEO_PPRESET_4X3_270,
+  VIDEO_PROFILE_BASELINE,
+} from '../config/player.config';
 
 interface AudioProps {
   bitrate: number;
@@ -18,7 +26,7 @@ interface AudioProps {
   samplerate: number;
 }
 
-export default function LiveSettingScreen(props: any) {
+export default function LiveStreamerScreen(props: any) {
   const {navigation} = props;
 
   const [isConnected, setIsConnected] = useState(false);
@@ -27,10 +35,10 @@ export default function LiveSettingScreen(props: any) {
   const [permission, setPermission] = useState<boolean>(false);
   const [playerRef, setPlayerRef] = useState<any>(undefined);
   const [cameraPreview, setCameraPreview] = useState<boolean>(false);
-  const [dto, setDto] = useState({});
+  const [dto, setDto] = useState<CreateRoomDto>();
   const [audioPreview, setAudioPreview] = useState<AudioProps>({
     bitrate: 32000,
-    profile: 1,
+    profile: AUDIO_PROFILE_LCAAC,
     samplerate: 44100,
   });
   const isFocused = useIsFocused();
@@ -70,8 +78,17 @@ export default function LiveSettingScreen(props: any) {
 
   const socket = React.useRef(new WebSocket(`ws://${socketServerHost}:8000/wsock`)).current;
   const handlePressStartLive = () => {
-    console.log('dto', dto);
-    navigation.navigate('LiveStart', dto);
+    socket.send(
+      JSON.stringify({
+        type: 'io.agora.ws.JoinRoom',
+        data: {
+          site_key: dto?.user.site_key,
+          user_string: dto?.user.user_key,
+          vod_key: dto?.vod_key,
+        },
+      }),
+    );
+    playerRef.start();
   };
 
   useEffect(() => {
@@ -99,8 +116,9 @@ export default function LiveSettingScreen(props: any) {
       try {
         const message = JSON.parse(e.data);
         const {type, data} = message;
-        const dto = SocketDtoFactory.make<CreateRoomResponse>(type, data);
+        const dto = SocketDtoFactory.make<CreateRoomDto>(type, data);
         setDto(dto);
+        setPushserver(`${dto.stream_url}/${dto.live_target}`);
       } catch (e) {
         console.log(e);
       }
@@ -127,22 +145,21 @@ export default function LiveSettingScreen(props: any) {
           // If the user confirmed, then we dispatch the action we blocked earlier
           // This will continue the action that had triggered the removal of the screen
           onPress: () => {
+            if (playerRef) playerRef.stop();
+            setCameraPreview(false);
+            setAudioPreview({
+              bitrate: 0,
+              profile: 0,
+              samplerate: 8000,
+            });
+            socket.close();
             navigation.dispatch(e.data.action);
           },
         },
       ]);
     });
 
-    return () => {
-      if (playerRef) playerRef.stop();
-      setCameraPreview(false);
-      setAudioPreview({
-        bitrate: 0,
-        profile: 0,
-        samplerate: 8000,
-      });
-      socket.close();
-    };
+    return () => {};
   }, [navigation]);
 
   return (
@@ -158,10 +175,10 @@ export default function LiveSettingScreen(props: any) {
           camera={{cameraId: 1, cameraFrontMirror: true}}
           audio={audioPreview}
           video={{
-            preset: 4,
-            bitrate: 500000,
-            profile: 0,
-            fps: 30,
+            preset: VIDEO_PPRESET_16X9_480,
+            bitrate: 3000000,
+            profile: VIDEO_PROFILE_BASELINE,
+            fps: 15,
             videoFrontMirror: false,
           }}
           smoothSkinLevel={3}

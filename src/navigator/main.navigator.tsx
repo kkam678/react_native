@@ -17,7 +17,9 @@ import TabNavigationAppendMenu from '../component/header/tab-navigation-append-m
 import {Color} from '../style/color.config';
 import {FontFamily} from '../style/font-family.config';
 import {FontSize} from '../style/font-size.config';
-
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import IconOct from 'react-native-vector-icons/Octicons';
+import IconFeather from 'react-native-vector-icons/Feather';
 export class MainNavigator extends Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -64,17 +66,17 @@ export class MainNavigator extends Component<any, any> {
         initialRouteName="MAIN"
         screenOptions={({route}) => ({
           tabBarIcon: ({focused, color, size}) => {
-            const iconColor = focused ? '#8b4d93' : '#333';
+            const iconColor = focused ? '#8b4d93' : '#a3a3a3';
             if (route.name === 'MAIN') {
-              return <HomeIcon color={iconColor} />;
-            } else if (route.name === 'VOTE') {
-              return <VoteIcon color={iconColor} />;
+              return <IconOct name="home" size={24} color={iconColor} />;
+            } else if (route.name === 'CHAT') {
+              return <Icon name="comment" size={24} color={iconColor} />;
             } else if (route.name === 'GALLERY') {
-              return <GalleryIcon color={iconColor} />;
-            } else if (route.name === 'NFT') {
-              return <NftIcon color={iconColor} />;
+              return <Icon name="image" size={24} color={iconColor} />;
+            } else if (route.name === 'FEED') {
+              return <Icon name="rss" size={24} color={iconColor} />;
             } else {
-              return <ShopIcon color={iconColor} />;
+              return <IconFeather name="shopping-bag" size={24} color={iconColor} />;
             }
           },
           tabBarActiveTintColor: '#8b4d93',
@@ -103,12 +105,12 @@ export class MainNavigator extends Component<any, any> {
           }}
         />
         <Tab.Screen
-          name="VOTE"
+          name="CHAT"
           component={MainScreen}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
-                <Text style={styles.title}>VOTE</Text>
+                <Text style={styles.title}>CHAT</Text>
               </TabNavigationHeader>
             ),
             headerRight: props => this.headerRight(props),
@@ -127,12 +129,12 @@ export class MainNavigator extends Component<any, any> {
           }}
         />
         <Tab.Screen
-          name="NFT"
+          name="FEED"
           component={MainScreen}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
-                <Text style={styles.title}>NFT</Text>
+                <Text style={styles.title}>FEED</Text>
               </TabNavigationHeader>
             ),
             headerRight: props => this.headerRight(props),
@@ -165,5 +167,10 @@ const styles = StyleSheet.create({
     color: Color.black,
     fontSize: FontSize.sectionTitle,
     fontFamily: FontFamily.title,
+  },
+  chat: {
+    color: Color.black,
+    width: 24,
+    height: 24,
   },
 });

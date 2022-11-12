@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Text, View} from 'react-native';
-import LiveSettingScreen from '../screen/live-setting.screen';
-import LiveStartScreen from '../screen/live-start.screen';
+import LiveStreamerScreen from '../screen/live-streamer.screen';
 
 const Stack = createNativeStackNavigator();
 export class LiveNavigator extends React.Component<any, any> {
@@ -13,21 +12,12 @@ export class LiveNavigator extends React.Component<any, any> {
 
   render() {
     return (
-      <Stack.Navigator initialRouteName="LiveSetting">
+      <Stack.Navigator initialRouteName="LiveStreamer">
         <Stack.Screen
-          name="LiveSetting"
-          component={LiveSettingScreen}
+          name="LiveStreamer"
+          component={LiveStreamerScreen}
           options={{
             title: '라이브 준비',
-            headerShown: false,
-            animation: 'slide_from_bottom',
-          }}
-        />
-        <Stack.Screen
-          name="LiveStart"
-          component={LiveStartScreen}
-          options={{
-            title: '라이브 방송',
             headerShown: false,
             animation: 'slide_from_bottom',
           }}

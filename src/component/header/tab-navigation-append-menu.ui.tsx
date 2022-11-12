@@ -4,7 +4,6 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {Color} from '../../style/color.config';
-import {LoginNavigator} from '../../../interface/navigator/login.navigator';
 
 export default class TabNavigationAppendMenu extends Component<any, any> {
   constructor(props: any) {

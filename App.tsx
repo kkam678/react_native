@@ -5,7 +5,7 @@
  * @format
  * @flow strict-local
  */
-
+import 'reflect-metadata';
 import React, {Component} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {LoginNavigator} from './src/navigator/login.navigator';
