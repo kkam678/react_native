@@ -6,7 +6,7 @@ import {NodeCameraView} from 'react-native-nodemediaclient';
 import {useIsFocused} from '@react-navigation/native';
 import {io} from 'socket.io-client';
 import {getModel} from 'react-native-device-info';
-import {socketServerHost} from '../config/constants';
+import {Constants} from '../config/constants';
 import {SocketSendParam} from '../model/socket/socket-send-param';
 import {CreateRoom} from '../model/socket/create-room';
 import {CreateRoomDto} from '../dto/socket/create-room.dto';
@@ -76,7 +76,9 @@ export default function LiveStreamerScreen(props: any) {
     }
   };
 
-  const socket = React.useRef(new WebSocket(`ws://${socketServerHost}:8000/wsock`)).current;
+  const socket = React.useRef(
+    new WebSocket(`ws://${Constants.socketServerHost}:8000/wsock`),
+  ).current;
   const handlePressStartLive = () => {
     socket.send(
       JSON.stringify({

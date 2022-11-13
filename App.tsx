@@ -19,6 +19,7 @@ import {fab} from '@fortawesome/free-brands-svg-icons';
 import {far} from '@fortawesome/free-regular-svg-icons';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {LiveNavigator} from './src/navigator/live.navigator';
+import {WebViewNavigator} from './src/navigator/web-view.navigator';
 
 interface IProps {}
 
@@ -47,6 +48,7 @@ class App extends Component<IProps, IState> {
             <Stack.Group screenOptions={{presentation: 'fullScreenModal'}}>
               <Stack.Screen name="Live" component={LiveNavigator} />
             </Stack.Group>
+            <Stack.Screen name="WebView" component={WebViewNavigator} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

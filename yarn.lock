@@ -6699,6 +6699,13 @@ react-native-vector-icons@^9.2.0:
     prop-types "^15.7.2"
     yargs "^16.1.1"
 
+react-native-webview-comlink@^0.7.6:
+  version "0.7.6"
+  resolved "https://registry.yarnpkg.com/react-native-webview-comlink/-/react-native-webview-comlink-0.7.6.tgz#cd901d9340b9b95088175888705630e5a36673d6"
+  integrity sha512-zXZ1p5+MzpmTTWHToUEzPYD3EntAbi0GVm3hlTJQNjXla6u1rmZPc5bhEmocpTowsCqfmJSRJaW2dbMYoEiElA==
+  dependencies:
+    hoist-non-react-statics "^3.3.2"
+
 react-native-webview@^11.23.1:
   version "11.23.1"
   resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-11.23.1.tgz#6a4bf2620e491dd4fecf4e6dc079005117fae12c"

@@ -1,3 +1,6 @@
-export const apiHost = 'https://newpickmi.livek.tv/api';
-export const apiVersion = '1';
-export const socketServerHost = `mtest.livek.tv`;
+export const Constants = {
+  apiHost: 'https://newpickmi.livek.tv/api',
+  apiVersion: '1',
+  socketServerHost: `mtest.livek.tv`,
+  bridgeName: `thelive_pickmi`,
+};

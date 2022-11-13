@@ -1,6 +1,5 @@
 import {plainToInstance} from 'class-transformer';
 import {action, makeAutoObservable, makeObservable, observable, runInAction, toJS} from 'mobx';
-import {apiHost} from '../config/constants';
 import {FollowDto} from '../dto/follow.dto';
 import {ModelDto} from '../dto/model.dto';
 import {SiteCategoryDto} from '../dto/site-category.dto';

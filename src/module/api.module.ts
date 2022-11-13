@@ -1,10 +1,10 @@
 import axios from 'axios';
-import {apiHost} from '../config/constants';
+import {Constants} from '../config/constants';
 
 export class ApiModule {
   public static async get<T>(uri: string, param?: T) {
     return await axios
-      .get(`${apiHost}/${uri}`, {
+      .get(`${Constants.apiHost}/${uri}`, {
         params: param,
       })
       .then(function (response) {

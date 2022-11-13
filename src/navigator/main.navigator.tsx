@@ -21,6 +21,14 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import IconOct from 'react-native-vector-icons/Octicons';
 import IconFeather from 'react-native-vector-icons/Feather';
 import {WebviewContainer} from '../component/web-view/web-view-container';
+import {WEBVIEW_URI} from '../config/web-view.constants';
+import {WebViewNavigator} from './web-view.navigator';
+
+const LoadWebView = (props: any) => {
+  const uri = WEBVIEW_URI[props.route.name];
+  return <WebviewContainer uri={uri} navigation={props.navigation} />;
+};
+
 export class MainNavigator extends Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -33,10 +41,6 @@ export class MainNavigator extends Component<any, any> {
 
   headerRight(props: any) {
     return <TabNavigationAppendMenu {...props} onPressMypage={this.handlePressMyPage} />;
-  }
-
-  loadWebView(uri: string) {
-    return <WebviewContainer uri={uri} />;
   }
 
   render() {
@@ -83,7 +87,6 @@ export class MainNavigator extends Component<any, any> {
         />
         <Tab.Screen
           name="CHAT"
-          component={WebviewContainer}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
@@ -91,11 +94,12 @@ export class MainNavigator extends Component<any, any> {
               </TabNavigationHeader>
             ),
             headerRight: props => this.headerRight(props),
-          }}
-        />
+          }}>
+          {props => <LoadWebView {...props} />}
+        </Tab.Screen>
+
         <Tab.Screen
           name="GALLERY"
-          component={WebviewContainer}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
@@ -103,11 +107,12 @@ export class MainNavigator extends Component<any, any> {
               </TabNavigationHeader>
             ),
             headerRight: props => this.headerRight(props),
-          }}
-        />
+          }}>
+          {props => <LoadWebView {...props} />}
+        </Tab.Screen>
+
         <Tab.Screen
           name="FEED"
-          component={WebviewContainer}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
@@ -115,11 +120,12 @@ export class MainNavigator extends Component<any, any> {
               </TabNavigationHeader>
             ),
             headerRight: props => this.headerRight(props),
-          }}
-        />
+          }}>
+          {props => <LoadWebView {...props} />}
+        </Tab.Screen>
+
         <Tab.Screen
           name="SHOP"
-          component={WebviewContainer}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
@@ -127,8 +133,9 @@ export class MainNavigator extends Component<any, any> {
               </TabNavigationHeader>
             ),
             headerRight: props => this.headerRight(props),
-          }}
-        />
+          }}>
+          {props => <LoadWebView {...props} />}
+        </Tab.Screen>
       </Tab.Navigator>
     );
   }
