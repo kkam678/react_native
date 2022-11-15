@@ -87,6 +87,7 @@ export class MainNavigator extends Component<any, any> {
         />
         <Tab.Screen
           name="CHAT"
+          component={LoadWebView}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
@@ -94,12 +95,13 @@ export class MainNavigator extends Component<any, any> {
               </TabNavigationHeader>
             ),
             headerRight: props => this.headerRight(props),
-          }}>
-          {props => <LoadWebView {...props} />}
-        </Tab.Screen>
+          }}
+        />
+        {/* {props => <LoadWebView {...props} />} */}
 
         <Tab.Screen
           name="GALLERY"
+          component={LoadWebView}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
@@ -107,12 +109,12 @@ export class MainNavigator extends Component<any, any> {
               </TabNavigationHeader>
             ),
             headerRight: props => this.headerRight(props),
-          }}>
-          {props => <LoadWebView {...props} />}
-        </Tab.Screen>
+          }}
+        />
 
         <Tab.Screen
           name="FEED"
+          component={LoadWebView}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
@@ -120,12 +122,12 @@ export class MainNavigator extends Component<any, any> {
               </TabNavigationHeader>
             ),
             headerRight: props => this.headerRight(props),
-          }}>
-          {props => <LoadWebView {...props} />}
-        </Tab.Screen>
+          }}
+        />
 
         <Tab.Screen
           name="SHOP"
+          component={LoadWebView}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
@@ -133,9 +135,8 @@ export class MainNavigator extends Component<any, any> {
               </TabNavigationHeader>
             ),
             headerRight: props => this.headerRight(props),
-          }}>
-          {props => <LoadWebView {...props} />}
-        </Tab.Screen>
+          }}
+        />
       </Tab.Navigator>
     );
   }

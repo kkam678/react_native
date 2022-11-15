@@ -127,14 +127,18 @@ export class MainScreen extends BaseScreen<any, IState> {
 
           <MainSectionContainer isFirst={false}>
             <MainSectionTitle title={this.lang.main.allModel} />
-
-            <FlatList
-              data={this.mainViewModel.model}
-              initialNumToRender={4}
-              renderItem={({item, index}) => <ModelList item={item} index={index} />}
-              keyExtractor={(item, index) => String(index)}
-              numColumns={2}
-            />
+            <View style={{display: 'flex', flexWrap: 'wrap', width: '100%', flexDirection: 'row'}}>
+              {this.mainViewModel.model.map((item, index) => {
+                return <ModelList item={item} index={index} />;
+              })}
+            </View>
+            {/* <FlatList
+            data={this.mainViewModel.model}
+            initialNumToRender={4}
+            renderItem={({item, index}) => <ModelList item={item} index={index} />}
+            keyExtractor={(item, index) => String(index)}
+            numColumns={2}
+          /> */}
           </MainSectionContainer>
         </ScrollView>
       </SafeAreaView>

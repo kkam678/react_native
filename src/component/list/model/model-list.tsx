@@ -19,7 +19,13 @@ export function ModelList(props: IProps) {
           marginBottom: 2,
         })
       }>
-      <Image source={{uri: item.profile_image}} style={styles.image} />
+      <Image
+        source={{uri: item.profile_image}}
+        style={[
+          styles.image,
+          {width: Dimensions.get('window').width / 2 - (index % numCols !== 0 ? 2 : 0)},
+        ]}
+      />
       <View style={{position: 'absolute', left: 8, bottom: 32}}>
         <Text style={{color: '#ffffff', fontSize: 12}}>{item.nickname}</Text>
       </View>
@@ -42,21 +48,18 @@ export function ModelList(props: IProps) {
 }
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'space-between',
-    flex: 1,
   },
   image: {
-    width: Dimensions.get('window').width / 2,
     height: Dimensions.get('window').width / 2,
   },
   info: {
-    justifyContent: 'flex-start',
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 8,
+    // justifyContent: 'flex-start',
+    // display: 'flex',
+    // flex: 1,
+    // flexDirection: 'row',
+    // alignItems: 'center',
+    // marginTop: 8,
   },
 });
