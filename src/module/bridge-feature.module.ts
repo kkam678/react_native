@@ -18,11 +18,11 @@ export class BridgeFeatureModule {
     console.log('join', json);
   }
   makeNavigate(dto: NavigationDto) {
-    // const pushAction = StackActions.push('WebView', {
-    //   uri: dto.url,
-    //   isStack: true,
-    // });
-    this.navigation.navigate('WebView', {uri: dto.url});
+    const pushAction = StackActions.push('WebView', {
+      uri: dto.url,
+      isStack: true,
+    });
+    this.navigation.dispatch(pushAction);
   }
   alert(json: string) {
     console.log('alert', json);

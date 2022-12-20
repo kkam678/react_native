@@ -16,12 +16,12 @@ export class WebViewNavigator extends React.Component<any, any> {
     return;
   }
   render() {
-    console.log('this.props', this.props);
+    // console.log('this.props', this.props);
     return (
       <Stack.Navigator initialRouteName="WebViewPage">
         <Stack.Screen
           name="WebViewPage"
-          component={props => <WebviewContainer {...props} uri={this.props.uri} />}
+          component={props => <WebviewContainer {...this.props} />}
           options={{
             title: '라이브 준비',
             headerShown: false,

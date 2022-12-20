@@ -13,30 +13,31 @@ export class MainViewModel {
   public hotModel: ModelDto[] = [];
   public model: ModelDto[] = [];
   constructor(props?: any) {
-    // makeObservable(this, {
-    //   live: observable,
-    //   follow: observable,
-    //   category: observable,
-    //   hotModel: observable,
-    //   model: observable,
-    //   requestList: action,
-    // });
-    makeAutoObservable(this);
+    makeObservable(this, {
+      live: observable,
+      follow: observable,
+      category: observable,
+      hotModel: observable,
+      model: observable,
+      requestList: action,
+    });
+    // makeAutoObservable(this);
   }
 
-  async requestList() {
+  async requestList(): Promise<void> {
     const response = await ApiModule.get<any>(`main`);
     runInAction(() => {
       const {data} = response;
       const {live, follow, category, hot_model, model} = data;
+      console.log(live);
       if (follow.length > 0) {
         this.follow = [];
         this.follow = live.map((item: object) => plainToInstance(FollowDto, item));
       }
-      if (category.length > 0) {
-        this.category = [];
-        this.category = live.map((item: object) => plainToInstance(SiteCategoryDto, item));
-      }
+      // if (category.length > 0) {
+      //   this.category = [];
+      //   this.category = category.map((item: object) => plainToInstance(SiteCategoryDto, item));
+      // }
       if (live.length > 0) {
         this.live = [];
         this.live = live.map((item: object) => plainToInstance(VodDto, item));

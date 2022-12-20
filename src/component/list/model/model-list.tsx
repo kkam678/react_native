@@ -1,5 +1,6 @@
 import React from 'react';
 import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
+import {Constants} from '../../../config/constants';
 import {ModelDto} from '../../../dto/model.dto';
 import {Color} from '../../../style/color.config';
 import CircleImage from '../../image/circle-image.ui';
@@ -20,7 +21,7 @@ export function ModelList(props: IProps) {
         })
       }>
       <Image
-        source={{uri: item.profile_image}}
+        source={{uri: item.profile_image ?? Constants.noPicImageUrl}}
         style={[
           styles.image,
           {width: Dimensions.get('window').width / 2 - (index % numCols !== 0 ? 2 : 0)},

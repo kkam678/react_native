@@ -1,5 +1,6 @@
 import React from 'react';
 import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
+import {Constants} from '../../config/constants';
 import {VodDto} from '../../dto/vod.dto';
 import {Color} from '../../style/color.config';
 import CircleImage from '../image/circle-image.ui';
@@ -18,10 +19,15 @@ export function VodMainList(props: IProps) {
           marginLeft: index === 0 ? 16 : 8,
         })
       }>
-      <Image source={{uri: item.image}} style={styles.image} />
+      <Image source={{uri: item.image ?? Constants.noPicImageUrl}} style={styles.image} />
       <View style={styles.info}>
         <View>
-          <CircleImage isLast={false} source={{uri: item.profile_image}} width={24} height={24} />
+          <CircleImage
+            isLast={false}
+            source={{uri: item.profile_image ?? Constants.noPicImageUrl}}
+            width={24}
+            height={24}
+          />
         </View>
         <View style={{marginLeft: 4}}>
           <Text style={{color: Color.black}}>{item.nickname}</Text>

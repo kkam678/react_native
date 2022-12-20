@@ -100,7 +100,7 @@ export class MainScreen extends BaseScreen<any, IState> {
               {mockData.map((v, k) => {
                 const isLast = mockData.length == k + 1;
                 return (
-                  <MainFollowContainer index={k}>
+                  <MainFollowContainer index={k} key={k}>
                     <CircleImage isLast={isLast} source={v.image} width={64} height={64} />
                     <Text style={{textAlign: 'center'}}>{v.name}</Text>
                   </MainFollowContainer>
@@ -112,7 +112,7 @@ export class MainScreen extends BaseScreen<any, IState> {
             <MainSectionTitle title={this.lang.main.liveBroadcast} />
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
               {this.mainViewModel.live.map((v, k) => {
-                return <VodMainList item={v} index={k} />;
+                return <VodMainList item={v} index={k} key={k} />;
               })}
             </ScrollView>
           </MainSectionContainer>
@@ -120,7 +120,7 @@ export class MainScreen extends BaseScreen<any, IState> {
             <MainSectionTitle title={this.lang.main.popularPictorialModel} />
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
               {this.mainViewModel.hotModel.map((v, k) => {
-                return <ModelMainPopularList item={v} index={k} />;
+                return <ModelMainPopularList item={v} index={k} key={k} />;
               })}
             </ScrollView>
           </MainSectionContainer>
@@ -129,16 +129,9 @@ export class MainScreen extends BaseScreen<any, IState> {
             <MainSectionTitle title={this.lang.main.allModel} />
             <View style={{display: 'flex', flexWrap: 'wrap', width: '100%', flexDirection: 'row'}}>
               {this.mainViewModel.model.map((item, index) => {
-                return <ModelList item={item} index={index} />;
+                return <ModelList item={item} index={index} key={index} />;
               })}
             </View>
-            {/* <FlatList
-            data={this.mainViewModel.model}
-            initialNumToRender={4}
-            renderItem={({item, index}) => <ModelList item={item} index={index} />}
-            keyExtractor={(item, index) => String(index)}
-            numColumns={2}
-          /> */}
           </MainSectionContainer>
         </ScrollView>
       </SafeAreaView>

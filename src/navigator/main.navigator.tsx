@@ -24,11 +24,12 @@ import {WebviewContainer} from '../component/web-view/web-view-container';
 import {WEBVIEW_URI} from '../config/web-view.constants';
 import {WebViewNavigator} from './web-view.navigator';
 
-const LoadWebView = (props: any) => {
+function TabWebView(props: any) {
   const uri = WEBVIEW_URI[props.route.name];
-  return <WebviewContainer uri={uri} navigation={props.navigation} />;
-};
+  return <WebviewContainer {...props} uri={uri} isTab={true} />;
+}
 
+const Tab = createBottomTabNavigator();
 export class MainNavigator extends Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -44,7 +45,6 @@ export class MainNavigator extends Component<any, any> {
   }
 
   render() {
-    const Tab = createBottomTabNavigator();
     return (
       <Tab.Navigator
         initialRouteName="MAIN"
@@ -87,7 +87,9 @@ export class MainNavigator extends Component<any, any> {
         />
         <Tab.Screen
           name="CHAT"
-          component={LoadWebView}
+          component={props => {
+            return <TabWebView {...props} />;
+          }}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
@@ -101,7 +103,9 @@ export class MainNavigator extends Component<any, any> {
 
         <Tab.Screen
           name="GALLERY"
-          component={LoadWebView}
+          component={props => {
+            return <TabWebView {...props} />;
+          }}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
@@ -114,7 +118,9 @@ export class MainNavigator extends Component<any, any> {
 
         <Tab.Screen
           name="FEED"
-          component={LoadWebView}
+          component={props => {
+            return <TabWebView {...props} />;
+          }}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>
@@ -127,7 +133,9 @@ export class MainNavigator extends Component<any, any> {
 
         <Tab.Screen
           name="SHOP"
-          component={LoadWebView}
+          component={props => {
+            return <TabWebView {...props} />;
+          }}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>

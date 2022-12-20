@@ -48,7 +48,15 @@ class App extends Component<IProps, IState> {
             <Stack.Group screenOptions={{presentation: 'fullScreenModal'}}>
               <Stack.Screen name="Live" component={LiveNavigator} />
             </Stack.Group>
-            <Stack.Screen name="WebView" component={WebViewNavigator} />
+            <Stack.Screen
+              name="WebView"
+              component={props => {
+                console.log('@@@@@@@@@@@@@@@@@@@@@@@@');
+                console.log('WebView', props);
+                console.log('@@@@@@@@@@@@@@@@@@@@@@@@');
+                return <WebViewNavigator {...props} />;
+              }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

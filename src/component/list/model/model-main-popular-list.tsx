@@ -1,5 +1,6 @@
 import React from 'react';
 import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
+import {Constants} from '../../../config/constants';
 import {ModelDto} from '../../../dto/model.dto';
 
 interface IProps {
@@ -16,7 +17,7 @@ export function ModelMainPopularList(props: IProps) {
           marginLeft: index === 0 ? 16 : 8,
         })
       }>
-      <Image source={{uri: item.profile_image}} style={styles.image} />
+      <Image source={{uri: item.profile_image ?? Constants.noPicImageUrl}} style={styles.image} />
       <View style={{position: 'absolute', left: 8, top: 8}}>
         <Text style={{color: '#ffffff', fontSize: 12}}>{item.nickname}</Text>
       </View>

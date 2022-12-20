@@ -25,6 +25,7 @@ export class BridgeInterface {
 
   public bridgeAction = (json: string) => {
     const dto = plainToInstance(BaseBridgeDto, JSON.parse(json));
+    console.log('bridgeAction!!', dto);
     switch (dto.id) {
       case WebViewBridgeId.Login:
         this.bridgeFeature.login(json);
