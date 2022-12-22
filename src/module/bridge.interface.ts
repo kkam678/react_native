@@ -61,4 +61,8 @@ export class BridgeInterface {
   public setNavigation = (navigation: any) => {
     this.bridgeFeature.setNavigation(navigation);
   };
+
+  public setWebViewRef = (webViewRef: any) => {
+    this.bridgeFeature.setWebViewRef(webViewRef);
+  };
 }

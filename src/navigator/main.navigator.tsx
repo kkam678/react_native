@@ -25,8 +25,8 @@ import {WEBVIEW_URI} from '../config/web-view.constants';
 import {WebViewNavigator} from './web-view.navigator';
 
 function TabWebView(props: any) {
-  const uri = WEBVIEW_URI[props.route.name];
-  return <WebviewContainer {...props} uri={uri} isTab={true} />;
+  const url = WEBVIEW_URI[props.route.name];
+  return <WebviewContainer {...props} url={url} isTab={true} />;
 }
 
 const Tab = createBottomTabNavigator();
