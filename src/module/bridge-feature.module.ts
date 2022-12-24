@@ -1,6 +1,7 @@
 import {StackActions, useNavigationContainerRef} from '@react-navigation/native';
 import React from 'react';
 import {Alert, Linking, TouchableWithoutFeedbackBase} from 'react-native';
+import {LoginDto} from '../dto/bridge/login.dto';
 import {NavigationDto} from '../dto/bridge/navigation.dto';
 
 export class BridgeFeatureModule {
@@ -9,30 +10,24 @@ export class BridgeFeatureModule {
   constructor(navigation?: any) {
     this.navigation = navigation;
   }
-  login(json: string) {
-    console.log('login', json);
+  login(dto: LoginDto) {
+    console.log('login', dto);
   }
   logout(json: string) {
     console.log('logout', json);
+  }
+  snsLogin(json: string) {
+    console.log('snsLogin', json);
   }
   join(json: string) {
     console.log('join', json);
   }
   makeNavigate(dto: NavigationDto) {
-    if (dto.isModal) {
-      console.log('isModal TRUE!!!');
-      const pushAction = StackActions.push('WebView', {
-        ...dto,
-        isStack: true,
-      });
-      this.navigation.dispatch(pushAction);
-    } else {
-      console.log('isModal FALSE!!!');
-      // this.webViewRef.current.source.uri = dto.url;
-      this.webViewRef.current.injectJavaScript(`history.pushState({},'','${dto.url}')`);
-      //this.webViewRef.current.injectJavaScript(`window.location.replace='${dto.url}'`);
-      // this.webViewRef.current.window.location.href = dto.url;
-    }
+    const pushAction = StackActions.push('WebView', {
+      ...dto,
+      isStack: true,
+    });
+    this.navigation.dispatch(pushAction);
   }
   alert(json: string) {
     console.log('alert', json);
@@ -41,9 +36,7 @@ export class BridgeFeatureModule {
     console.log('openWebBrowser', json);
     // Linking.openURL(dto.url);
   }
-  snsLogin(json: string) {
-    console.log('snsLogin', json);
-  }
+
   onFinishPayment(json: string) {
     console.log('onFinishPayment', json);
   }

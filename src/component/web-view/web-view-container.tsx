@@ -31,12 +31,6 @@ export const WebviewContainer = (props: any) => {
   })(WebView);
 
   const handleBackButtonPress = () => {
-    return false;
-    console.log('################################################################');
-    console.log('################################################################');
-    console.log('################################################################');
-    console.log('################################################################');
-    console.log(isCanGoBack);
     if (webViewRef.current && isCanGoBack) {
       webViewRef.current.goBack();
       return true;
@@ -53,6 +47,8 @@ export const WebviewContainer = (props: any) => {
   }, [isCanGoBack]);
   return (
     <WebViewComponent
+      source={{uri: url}}
+      //@ts-ignore
       ref={webViewRef}
       pullToRefreshEnabled={true}
       startInLoadingState={true}
@@ -73,12 +69,13 @@ export const WebviewContainer = (props: any) => {
       javaScriptEnabled={true}
       mixedContentMode={'compatibility'}
       originWhitelist={['https://*', 'http://*']}
-      userAgent={
-        deviceInfoModule.getUserAgent() +
-        '[TOKEN/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzE2MjY4OTQsImV4cCI6MTY3NDIxODg5NCwiaXNzIjoiaHR0cHM6XC9cL25ld3BpY2ttaS1zdGcubGl2ZWsudHYiLCJ1aWQiOjQzMX0.h4Fs-byjfujis3r0BHl24hmR_fZzXMiZO2SdRf0wKlE] APP_PICKMI '
-      }
-      // onNavigationStateChange={setNavState}
-      source={{uri: url}}
+      userAgent={deviceInfoModule.getUserAgent() + '[TOKEN/] APP_PICKMI '}
+      // onNavigationStateChange={event => {
+      //   if (event.url !== url) {
+      //     webViewRef.current?.stopLoading();
+      //     Linking.openURL(event.url);
+      //   }
+      // }}
       nativeConfig={{props: {webContentsDebuggingEnabled: true}}}
       onLoadStart={evt => {
         console.log('onLoadStart', evt.nativeEvent.url);
@@ -105,54 +102,11 @@ export const WebviewContainer = (props: any) => {
     
       `}
       onMessage={({nativeEvent: state}) => {
-        console.log('nativeEvent: state', state);
         if (state.data === 'navigationStateChange') {
           // Navigation state updated, can check state.canGoBack, etc.
-          console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-          console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-          console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-          console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-          console.log('state.canGoBack', state);
           setIsCanGoBack(state.canGoBack);
         }
       }}
     />
-
-    // <WebView
-    //   ref={webViewRef}
-    //   pullToRefreshEnabled={true}
-    //   startInLoadingState={true}
-    //   renderLoading={() => (
-    //     <ActivityIndicator
-    //       color={Color.mainColor}
-    //       size={48}
-    //       style={{
-    //         width: '100%',
-    //         height: '100%',
-    //         flex: 1,
-    //         justifyContent: 'center',
-    //         alignItems: 'center',
-    //         position: 'absolute',
-    //       }}
-    //     />
-    //   )}
-    //   javaScriptEnabled={true}
-    //   mixedContentMode={'compatibility'}
-    //   originWhitelist={['https://*', 'http://*']}
-    //   userAgent={
-    //     deviceInfoModule.getUserAgent() +
-    //     '[TOKEN/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzE2MjY4OTQsImV4cCI6MTY3NDIxODg5NCwiaXNzIjoiaHR0cHM6XC9cL25ld3BpY2ttaS1zdGcubGl2ZWsudHYiLCJ1aWQiOjQzMX0.h4Fs-byjfujis3r0BHl24hmR_fZzXMiZO2SdRf0wKlE] APP_PICKMI '
-    //   }
-    //   // onNavigationStateChange={setNavState}
-    //   source={{uri: url}}
-    //   nativeConfig={{props: {webContentsDebuggingEnabled: true}}}
-    //   onLoadStart={evt => {
-    //     console.log('onLoadStart', evt.nativeEvent.url);
-    //   }}
-    //   onLoadEnd={evt => {
-    //     console.log('onLoadEnd', evt.nativeEvent.url);
-    //   }}
-    //   injectedJavaScriptBeforeContentLoaded={`console.log('hello world!');`}
-    // />
   );
 };

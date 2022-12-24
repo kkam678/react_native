@@ -25,6 +25,7 @@ import {WEBVIEW_URI} from '../config/web-view.constants';
 import {WebViewNavigator} from './web-view.navigator';
 
 function TabWebView(props: any) {
+  console.log(props.route.name);
   const url = WEBVIEW_URI[props.route.name];
   return <WebviewContainer {...props} url={url} isTab={true} />;
 }
@@ -68,7 +69,10 @@ export class MainNavigator extends Component<any, any> {
         })}>
         <Tab.Screen
           name="MAIN"
-          component={MainScreen}
+          // component={MainScreen}
+          component={props => {
+            return <TabWebView {...props} />;
+          }}
           options={{
             headerTitle: props => (
               <TabNavigationHeader {...props}>

@@ -2,6 +2,7 @@ import {plainToInstance} from 'class-transformer';
 import {Alert} from 'react-native';
 import {NavigationContext} from 'react-navigation';
 import {BaseBridgeDto} from '../dto/bridge/base-bridge.dto';
+import {LoginDto} from '../dto/bridge/login.dto';
 import {NavigationDto} from '../dto/bridge/navigation.dto';
 import {BridgeFeatureModule} from './bridge-feature.module';
 
@@ -25,10 +26,10 @@ export class BridgeInterface {
 
   public bridgeAction = (json: string) => {
     const dto = plainToInstance(BaseBridgeDto, JSON.parse(json));
-    console.log('bridgeAction!!', dto);
     switch (dto.id) {
       case WebViewBridgeId.Login:
-        this.bridgeFeature.login(json);
+        const loginDto = plainToInstance(LoginDto, dto.data);
+        this.bridgeFeature.login(loginDto);
         break;
       case WebViewBridgeId.Logout:
         this.bridgeFeature.logout(json);
@@ -37,8 +38,8 @@ export class BridgeInterface {
         this.bridgeFeature.join(json);
         break;
       case WebViewBridgeId.Navigate:
-        const data = plainToInstance(NavigationDto, dto.data);
-        this.bridgeFeature.makeNavigate(data);
+        const navigationDto = plainToInstance(NavigationDto, dto.data);
+        this.bridgeFeature.makeNavigate(navigationDto);
         break;
       case WebViewBridgeId.Alert:
         this.bridgeFeature.alert(json);
